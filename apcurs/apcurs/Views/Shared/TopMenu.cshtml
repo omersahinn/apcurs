@@ -1,0 +1,245 @@
+﻿
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4//bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/angular-translate.min.js"></script>
+    <script src="~/Scripts/tr_TR.js"></script>
+    <script src="~/Scripts/en_US.js"></script>
+
+    <style type="text/css">
+        .navbar-nav > li > .dropdown-menu {
+            margin-top: 20px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .navbar-default .navbar-nav > li > a {
+            width: 200px;
+            font-weight: bold;
+        }
+
+        .mega-dropdown {
+            position: static !important;
+            width: 100%;
+        }
+
+        .mega-dropdown-menu {
+            padding: 20px 0px;
+            width: 60%;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+
+          
+
+            .mega-dropdown-menu > li > ul {
+                padding: 0;
+                margin: 0;
+            }
+
+                .mega-dropdown-menu > li > ul > li {
+                    list-style: none;
+                }
+
+                    .mega-dropdown-menu > li > ul > li > a {
+                        display: block;
+                        padding: 3px 20px;
+                        clear: both;
+                        font-weight: normal;
+                        line-height: 1.428571429;
+                        color: #999;
+                        white-space: normal;
+                    }
+
+            .mega-dropdown-menu > li ul > li > a:hover,
+            .mega-dropdown-menu > li ul > li > a:focus {
+                text-decoration: none;
+                color: #444;
+                background-color: #f5f5f5;
+            }
+
+            .mega-dropdown-menu .dropdown-header {
+                color: #428bca;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .mega-dropdown-menu form {
+                margin: 3px 20px;
+            }
+
+            .mega-dropdown-menu .form-group {
+                margin-bottom: 3px;
+            }
+            .profil{
+                width:250px;
+            }
+        .profil:hover {
+            opacity:0.7;
+         
+        }
+    </style>
+
+
+
+        <div class="menuextras" style="width:1300px">
+
+            <div class="extras">
+                <ul>
+                    <li style="font-size:13px"><a href="@Url.Action("Login","Account")">Giriş Yap</a></li>
+                    <li style="font-size:13px"><a href="@Url.Action("UserRegister","Account")">Kaydol</a></li>
+                </ul>
+            </div>
+            <div class="extras">
+                <ul style="float:left;margin-left:150px">
+                    <li><a href="page-login.html">Ana Sayfa ></a></li>
+                    <li style="padding:0"><a href="page-login.html">Blog</a></li>
+
+                </ul>
+            </div>
+          
+            
+
+        </div>
+
+        <nav id="mainmenu" class="mainmenu">
+
+            <ul>
+                <li class="logo-wrapper"><a href="index.html"><span style="font-size:30px; color:black;">ApCurs</span></a></li>
+
+
+                <li class="mega-dropdown" style="width:2%;margin-left:2px;margin-right:30px">
+                    <span class="glyphicon glyphicon-align-justify pull-right dropdown-toggle" data-toggle="dropdown" style="width:3px;">
+                        <i class="icon-remove-sign"></i>
+                    </span>
+
+                    <ul class="dropdown-menu mega-dropdown-menu row" style="top:89px; margin-left:0px;position:fixed; width:100%; height:100%;">
+
+
+                        <div class="row" style="margin:10px">
+
+
+                            <a href="#">
+                                <div class="pricing-wrapper">
+                                    <div class="pricing-plan">
+                                       <img src="http://via.placeholder.com/300x200"/>
+                                    </div>
+                                </div>
+                            </a>
+
+
+                            <a href="#">
+                                <div class="pricing-wrapper">
+                                    <div class="pricing-plan">
+                                        <img src="http://via.placeholder.com/300x200" />
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="pricing-wrapper">
+                                    <div class="pricing-plan">
+                                        <img src="http://via.placeholder.com/300x200" />
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="pricing-wrapper">
+                                    <div class="pricing-plan">
+                                        <img src="http://via.placeholder.com/300x200" />
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+
+                        <div class="row" style="margin:10px">
+                            <a href="#">
+                                <div class="pricing-wrapper">
+                                    <div class="pricing-plan">
+                                        <img src="http://via.placeholder.com/300x200" />
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="pricing-wrapper">
+                                    <div class="pricing-plan">
+                                        <img src="http://via.placeholder.com/300x200" />
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="pricing-wrapper">
+                                    <div class="pricing-plan">
+                                        <img src="http://via.placeholder.com/300x200" />
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="#">
+                                <div class="pricing-wrapper">
+                                    <div class="pricing-plan">
+                                        <img src="http://via.placeholder.com/300x200" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </ul>
+
+                </li>
+
+
+
+                <li class="active">
+                    <a href="index.html">Sorular</a>
+                </li>
+                <li>
+                    <a href="credits.html">Makaleler</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="#">Tartışma</a>
+                   
+                </li>
+                <li>
+                    <a href="credits.html">Etkinlik</a>
+                </li>
+                <li>
+                    <a href="features.html">Uzman</a>
+                </li>
+                <li style="margin-left:40px">
+                   
+                    <div class="profil">
+                        <a href="#" title="Profil" style="text-decoration:none;float:right"><img width="30px" height="30px" style="border-radius:100px" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88" alt=""><span style="margin-left:6px">Kullanıcı</span></a>
+                        
+                        </div>
+                 
+                </li>
+                <form class="navbar-form navbar-right ng-valid ng-dirty ng-valid-parse ng-submitted" role="search" style="margin-right:-185px;">
+
+                    <div class="form-group">
+                        <input class="form-control ng-valid ng-touched ng-dirty ng-valid-parse ng-empty" type="text" placeholder="Arama">
+                    </div>
+                </form>
+               
+
+            </ul>
+
+        </nav>
+  
+
+
+ 
+
+        <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

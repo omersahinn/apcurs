@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ApcursDb" Class="DbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=ApcursDb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ApcursDbConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.SubCategory" Member="SubCategories">
+    <Type Name="SubCategory">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubCategoryName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Categoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SubCategory_Article" Member="Articles" ThisKey="id" OtherKey="SubCategoryid" Type="Article" />
+      <Association Name="SubCategory_Question" Member="Questions" ThisKey="id" OtherKey="SubCategoryid" Type="Question" />
+      <Association Name="Category_SubCategory" Member="Category" ThisKey="Categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Message" Member="Messages">
+    <Type Name="Message">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MessageContent" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ShortTitle" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FromUserid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ToUserid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_Message" Member="User" ThisKey="FromUserid" OtherKey="id" Type="User" IsForeignKey="true" />
+      <Association Name="User_Message1" Member="User1" ThisKey="ToUserid" OtherKey="id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ConfirmAnswer" Member="ConfirmAnswers">
+    <Type Name="ConfirmAnswer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ConfirmAnswerid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Answer_ConfirmAnswer" Member="Answer" ThisKey="ConfirmAnswerid" OtherKey="id" Type="Answer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Category_SubCategory" Member="SubCategories" ThisKey="id" OtherKey="Categoryid" Type="SubCategory" />
+      <Association Name="Category_Article" Member="Articles" ThisKey="id" OtherKey="Categoryid" Type="Article" />
+      <Association Name="Category_Question" Member="Questions" ThisKey="id" OtherKey="Categoryid" Type="Question" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ArticleComment" Member="ArticleComments">
+    <Type Name="ArticleComment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CommentText" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Userid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Articleid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Article_ArticleComment" Member="Article" ThisKey="Articleid" OtherKey="id" Type="Article" IsForeignKey="true" />
+      <Association Name="User_ArticleComment" Member="User" ThisKey="Userid" OtherKey="id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Article" Member="Articles">
+    <Type Name="Article">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ArticleText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Userid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubCategoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Categoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ViewCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LikeCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ShortTitle" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Association Name="Article_ArticleComment" Member="ArticleComments" ThisKey="id" OtherKey="Articleid" Type="ArticleComment" />
+      <Association Name="Category_Article" Member="Category" ThisKey="Categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
+      <Association Name="SubCategory_Article" Member="SubCategory" ThisKey="SubCategoryid" OtherKey="id" Type="SubCategory" IsForeignKey="true" />
+      <Association Name="User_Article" Member="User" ThisKey="Userid" OtherKey="id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Answer" Member="Answers">
+    <Type Name="Answer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Questionid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AnswerText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Userid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Answer_ConfirmAnswer" Member="ConfirmAnswers" ThisKey="id" OtherKey="ConfirmAnswerid" Type="ConfirmAnswer" />
+      <Association Name="Question_Answer" Member="Question" ThisKey="Questionid" OtherKey="id" Type="Question" IsForeignKey="true" />
+      <Association Name="User_Answer" Member="User" ThisKey="Userid" OtherKey="id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Question" Member="Questions">
+    <Type Name="Question">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Userid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubCategoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsReply" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ViewCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VoteCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ShortTitle" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Question_Answer" Member="Answers" ThisKey="id" OtherKey="Questionid" Type="Answer" />
+      <Association Name="Category_Question" Member="Category" ThisKey="Categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
+      <Association Name="SubCategory_Question" Member="SubCategory" ThisKey="SubCategoryid" OtherKey="id" Type="SubCategory" IsForeignKey="true" />
+      <Association Name="User_Question" Member="User" ThisKey="Userid" OtherKey="id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="About" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Reputation" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProfilPicture" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LoginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Ip" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ConfirmedEmail" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="User_Message" Member="Messages" ThisKey="id" OtherKey="FromUserid" Type="Message" />
+      <Association Name="User_Message1" Member="Messages1" ThisKey="id" OtherKey="ToUserid" Type="Message" />
+      <Association Name="User_ArticleComment" Member="ArticleComments" ThisKey="id" OtherKey="Userid" Type="ArticleComment" />
+      <Association Name="User_Article" Member="Articles" ThisKey="id" OtherKey="Userid" Type="Article" />
+      <Association Name="User_Answer" Member="Answers" ThisKey="id" OtherKey="Userid" Type="Answer" />
+      <Association Name="User_Question" Member="Questions" ThisKey="id" OtherKey="Userid" Type="Question" />
+    </Type>
+  </Table>
+</Database>
