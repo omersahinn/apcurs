@@ -17,7 +17,7 @@ namespace apcurs.Controllers
 
     public class AccountController : Controller
     {
-
+        
         DbDataContext db = new DbDataContext();
 
         public string GetErrorMessage(Exception ex)

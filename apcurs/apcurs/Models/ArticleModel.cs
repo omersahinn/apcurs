@@ -16,7 +16,8 @@ namespace apcurs.Models
         public int? viewCount { get; set; }
         public int? likeCount { get; set; }
         public string shortTitle { get; set; }
-        public ArticleComment comment { get; set; }
+        public List<ArticleComment> comment { get; set; }
         public bool status { get; set; }
+        public string articlePicture { get; set; }
     }
 }

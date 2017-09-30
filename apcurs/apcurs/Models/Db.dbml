@@ -7,8 +7,8 @@
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Categoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="SubCategory_Article" Member="Articles" ThisKey="id" OtherKey="SubCategoryid" Type="Article" />
       <Association Name="SubCategory_Question" Member="Questions" ThisKey="id" OtherKey="SubCategoryid" Type="Question" />
+      <Association Name="SubCategory_Article" Member="Articles" ThisKey="id" OtherKey="SubCategoryid" Type="Article" />
       <Association Name="Category_SubCategory" Member="Category" ThisKey="Categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
     </Type>
   </Table>
@@ -39,8 +39,8 @@
       <Column Name="CategoryName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Category_SubCategory" Member="SubCategories" ThisKey="id" OtherKey="Categoryid" Type="SubCategory" />
-      <Association Name="Category_Article" Member="Articles" ThisKey="id" OtherKey="Categoryid" Type="Article" />
       <Association Name="Category_Question" Member="Questions" ThisKey="id" OtherKey="Categoryid" Type="Question" />
+      <Association Name="Category_Article" Member="Articles" ThisKey="id" OtherKey="Categoryid" Type="Article" />
     </Type>
   </Table>
   <Table Name="dbo.ArticleComment" Member="ArticleComments">
@@ -51,26 +51,8 @@
       <Column Name="Articleid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Article_ArticleComment" Member="Article" ThisKey="Articleid" OtherKey="id" Type="Article" IsForeignKey="true" />
       <Association Name="User_ArticleComment" Member="User" ThisKey="Userid" OtherKey="id" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Article" Member="Articles">
-    <Type Name="Article">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ArticleText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Userid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="SubCategoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Categoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ViewCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LikeCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ShortTitle" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
-      <Association Name="Article_ArticleComment" Member="ArticleComments" ThisKey="id" OtherKey="Articleid" Type="ArticleComment" />
-      <Association Name="Category_Article" Member="Category" ThisKey="Categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
-      <Association Name="SubCategory_Article" Member="SubCategory" ThisKey="SubCategoryid" OtherKey="id" Type="SubCategory" IsForeignKey="true" />
-      <Association Name="User_Article" Member="User" ThisKey="Userid" OtherKey="id" Type="User" IsForeignKey="true" />
+      <Association Name="Article_ArticleComment" Member="Article" ThisKey="Articleid" OtherKey="id" Type="Article" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Answer" Member="Answers">
@@ -122,9 +104,28 @@
       <Association Name="User_Message" Member="Messages" ThisKey="id" OtherKey="FromUserid" Type="Message" />
       <Association Name="User_Message1" Member="Messages1" ThisKey="id" OtherKey="ToUserid" Type="Message" />
       <Association Name="User_ArticleComment" Member="ArticleComments" ThisKey="id" OtherKey="Userid" Type="ArticleComment" />
-      <Association Name="User_Article" Member="Articles" ThisKey="id" OtherKey="Userid" Type="Article" />
       <Association Name="User_Answer" Member="Answers" ThisKey="id" OtherKey="Userid" Type="Answer" />
       <Association Name="User_Question" Member="Questions" ThisKey="id" OtherKey="Userid" Type="Question" />
+      <Association Name="User_Article" Member="Articles" ThisKey="id" OtherKey="Userid" Type="Article" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Article" Member="Articles">
+    <Type Name="Article">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ArticleText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Userid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubCategoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Categoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ViewCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LikeCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ShortTitle" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="ArticlePicture" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Association Name="Article_ArticleComment" Member="ArticleComments" ThisKey="id" OtherKey="Articleid" Type="ArticleComment" />
+      <Association Name="Category_Article" Member="Category" ThisKey="Categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
+      <Association Name="SubCategory_Article" Member="SubCategory" ThisKey="SubCategoryid" OtherKey="id" Type="SubCategory" IsForeignKey="true" />
+      <Association Name="User_Article" Member="User" ThisKey="Userid" OtherKey="id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

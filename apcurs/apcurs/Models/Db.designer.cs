@@ -45,9 +45,6 @@ namespace apcurs.Models
     partial void InsertArticleComment(ArticleComment instance);
     partial void UpdateArticleComment(ArticleComment instance);
     partial void DeleteArticleComment(ArticleComment instance);
-    partial void InsertArticle(Article instance);
-    partial void UpdateArticle(Article instance);
-    partial void DeleteArticle(Article instance);
     partial void InsertAnswer(Answer instance);
     partial void UpdateAnswer(Answer instance);
     partial void DeleteAnswer(Answer instance);
@@ -57,6 +54,9 @@ namespace apcurs.Models
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertArticle(Article instance);
+    partial void UpdateArticle(Article instance);
+    partial void DeleteArticle(Article instance);
     #endregion
 		
 		public DbDataContext() : 
@@ -129,14 +129,6 @@ namespace apcurs.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Article> Articles
-		{
-			get
-			{
-				return this.GetTable<Article>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Answer> Answers
 		{
 			get
@@ -160,6 +152,14 @@ namespace apcurs.Models
 				return this.GetTable<User>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Article> Articles
+		{
+			get
+			{
+				return this.GetTable<Article>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SubCategory")]
@@ -178,9 +178,9 @@ namespace apcurs.Models
 		
 		private System.Nullable<System.DateTime> _CreatedDate;
 		
-		private EntitySet<Article> _Articles;
-		
 		private EntitySet<Question> _Questions;
+		
+		private EntitySet<Article> _Articles;
 		
 		private EntityRef<Category> _Category;
 		
@@ -202,8 +202,8 @@ namespace apcurs.Models
 		
 		public SubCategory()
 		{
-			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
 			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
+			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
 			this._Category = default(EntityRef<Category>);
 			OnCreated();
 		}
@@ -312,19 +312,6 @@ namespace apcurs.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SubCategory_Article", Storage="_Articles", ThisKey="id", OtherKey="SubCategoryid")]
-		public EntitySet<Article> Articles
-		{
-			get
-			{
-				return this._Articles;
-			}
-			set
-			{
-				this._Articles.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SubCategory_Question", Storage="_Questions", ThisKey="id", OtherKey="SubCategoryid")]
 		public EntitySet<Question> Questions
 		{
@@ -335,6 +322,19 @@ namespace apcurs.Models
 			set
 			{
 				this._Questions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SubCategory_Article", Storage="_Articles", ThisKey="id", OtherKey="SubCategoryid")]
+		public EntitySet<Article> Articles
+		{
+			get
+			{
+				return this._Articles;
+			}
+			set
+			{
+				this._Articles.Assign(value);
 			}
 		}
 		
@@ -392,18 +392,6 @@ namespace apcurs.Models
 			}
 		}
 		
-		private void attach_Articles(Article entity)
-		{
-			this.SendPropertyChanging();
-			entity.SubCategory = this;
-		}
-		
-		private void detach_Articles(Article entity)
-		{
-			this.SendPropertyChanging();
-			entity.SubCategory = null;
-		}
-		
 		private void attach_Questions(Question entity)
 		{
 			this.SendPropertyChanging();
@@ -411,6 +399,18 @@ namespace apcurs.Models
 		}
 		
 		private void detach_Questions(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.SubCategory = null;
+		}
+		
+		private void attach_Articles(Article entity)
+		{
+			this.SendPropertyChanging();
+			entity.SubCategory = this;
+		}
+		
+		private void detach_Articles(Article entity)
 		{
 			this.SendPropertyChanging();
 			entity.SubCategory = null;
@@ -870,9 +870,9 @@ namespace apcurs.Models
 		
 		private EntitySet<SubCategory> _SubCategories;
 		
-		private EntitySet<Article> _Articles;
-		
 		private EntitySet<Question> _Questions;
+		
+		private EntitySet<Article> _Articles;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -889,8 +889,8 @@ namespace apcurs.Models
 		public Category()
 		{
 			this._SubCategories = new EntitySet<SubCategory>(new Action<SubCategory>(this.attach_SubCategories), new Action<SubCategory>(this.detach_SubCategories));
-			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
 			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
+			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
 			OnCreated();
 		}
 		
@@ -967,19 +967,6 @@ namespace apcurs.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Article", Storage="_Articles", ThisKey="id", OtherKey="Categoryid")]
-		public EntitySet<Article> Articles
-		{
-			get
-			{
-				return this._Articles;
-			}
-			set
-			{
-				this._Articles.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Question", Storage="_Questions", ThisKey="id", OtherKey="Categoryid")]
 		public EntitySet<Question> Questions
 		{
@@ -990,6 +977,19 @@ namespace apcurs.Models
 			set
 			{
 				this._Questions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Article", Storage="_Articles", ThisKey="id", OtherKey="Categoryid")]
+		public EntitySet<Article> Articles
+		{
+			get
+			{
+				return this._Articles;
+			}
+			set
+			{
+				this._Articles.Assign(value);
 			}
 		}
 		
@@ -1025,18 +1025,6 @@ namespace apcurs.Models
 			entity.Category = null;
 		}
 		
-		private void attach_Articles(Article entity)
-		{
-			this.SendPropertyChanging();
-			entity.Category = this;
-		}
-		
-		private void detach_Articles(Article entity)
-		{
-			this.SendPropertyChanging();
-			entity.Category = null;
-		}
-		
 		private void attach_Questions(Question entity)
 		{
 			this.SendPropertyChanging();
@@ -1044,6 +1032,18 @@ namespace apcurs.Models
 		}
 		
 		private void detach_Questions(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = null;
+		}
+		
+		private void attach_Articles(Article entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = this;
+		}
+		
+		private void detach_Articles(Article entity)
 		{
 			this.SendPropertyChanging();
 			entity.Category = null;
@@ -1068,9 +1068,9 @@ namespace apcurs.Models
 		
 		private bool _Status;
 		
-		private EntityRef<Article> _Article;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Article> _Article;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1092,8 +1092,8 @@ namespace apcurs.Models
 		
 		public ArticleComment()
 		{
-			this._Article = default(EntityRef<Article>);
 			this._User = default(EntityRef<User>);
+			this._Article = default(EntityRef<Article>);
 			OnCreated();
 		}
 		
@@ -1225,40 +1225,6 @@ namespace apcurs.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Article_ArticleComment", Storage="_Article", ThisKey="Articleid", OtherKey="id", IsForeignKey=true)]
-		public Article Article
-		{
-			get
-			{
-				return this._Article.Entity;
-			}
-			set
-			{
-				Article previousValue = this._Article.Entity;
-				if (((previousValue != value) 
-							|| (this._Article.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Article.Entity = null;
-						previousValue.ArticleComments.Remove(this);
-					}
-					this._Article.Entity = value;
-					if ((value != null))
-					{
-						value.ArticleComments.Add(this);
-						this._Articleid = value.id;
-					}
-					else
-					{
-						this._Articleid = default(int);
-					}
-					this.SendPropertyChanged("Article");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_ArticleComment", Storage="_User", ThisKey="Userid", OtherKey="id", IsForeignKey=true)]
 		public User User
 		{
@@ -1293,419 +1259,36 @@ namespace apcurs.Models
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Article")]
-	public partial class Article : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _ArticleText;
-		
-		private int _Userid;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private int _SubCategoryid;
-		
-		private int _Categoryid;
-		
-		private System.Nullable<int> _ViewCount;
-		
-		private System.Nullable<int> _LikeCount;
-		
-		private bool _Status;
-		
-		private string _ShortTitle;
-		
-		private EntitySet<ArticleComment> _ArticleComments;
-		
-		private EntityRef<Category> _Category;
-		
-		private EntityRef<SubCategory> _SubCategory;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnArticleTextChanging(string value);
-    partial void OnArticleTextChanged();
-    partial void OnUseridChanging(int value);
-    partial void OnUseridChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedDateChanged();
-    partial void OnSubCategoryidChanging(int value);
-    partial void OnSubCategoryidChanged();
-    partial void OnCategoryidChanging(int value);
-    partial void OnCategoryidChanged();
-    partial void OnViewCountChanging(System.Nullable<int> value);
-    partial void OnViewCountChanged();
-    partial void OnLikeCountChanging(System.Nullable<int> value);
-    partial void OnLikeCountChanged();
-    partial void OnStatusChanging(bool value);
-    partial void OnStatusChanged();
-    partial void OnShortTitleChanging(string value);
-    partial void OnShortTitleChanged();
-    #endregion
-		
-		public Article()
-		{
-			this._ArticleComments = new EntitySet<ArticleComment>(new Action<ArticleComment>(this.attach_ArticleComments), new Action<ArticleComment>(this.detach_ArticleComments));
-			this._Category = default(EntityRef<Category>);
-			this._SubCategory = default(EntityRef<SubCategory>);
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Article_ArticleComment", Storage="_Article", ThisKey="Articleid", OtherKey="id", IsForeignKey=true)]
+		public Article Article
 		{
 			get
 			{
-				return this._id;
+				return this._Article.Entity;
 			}
 			set
 			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ArticleText", DbType="NVarChar(MAX)")]
-		public string ArticleText
-		{
-			get
-			{
-				return this._ArticleText;
-			}
-			set
-			{
-				if ((this._ArticleText != value))
-				{
-					this.OnArticleTextChanging(value);
-					this.SendPropertyChanging();
-					this._ArticleText = value;
-					this.SendPropertyChanged("ArticleText");
-					this.OnArticleTextChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Userid", DbType="Int NOT NULL")]
-		public int Userid
-		{
-			get
-			{
-				return this._Userid;
-			}
-			set
-			{
-				if ((this._Userid != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUseridChanging(value);
-					this.SendPropertyChanging();
-					this._Userid = value;
-					this.SendPropertyChanged("Userid");
-					this.OnUseridChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubCategoryid", DbType="Int NOT NULL")]
-		public int SubCategoryid
-		{
-			get
-			{
-				return this._SubCategoryid;
-			}
-			set
-			{
-				if ((this._SubCategoryid != value))
-				{
-					if (this._SubCategory.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSubCategoryidChanging(value);
-					this.SendPropertyChanging();
-					this._SubCategoryid = value;
-					this.SendPropertyChanged("SubCategoryid");
-					this.OnSubCategoryidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Categoryid", DbType="Int NOT NULL")]
-		public int Categoryid
-		{
-			get
-			{
-				return this._Categoryid;
-			}
-			set
-			{
-				if ((this._Categoryid != value))
-				{
-					if (this._Category.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCategoryidChanging(value);
-					this.SendPropertyChanging();
-					this._Categoryid = value;
-					this.SendPropertyChanged("Categoryid");
-					this.OnCategoryidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewCount", DbType="Int")]
-		public System.Nullable<int> ViewCount
-		{
-			get
-			{
-				return this._ViewCount;
-			}
-			set
-			{
-				if ((this._ViewCount != value))
-				{
-					this.OnViewCountChanging(value);
-					this.SendPropertyChanging();
-					this._ViewCount = value;
-					this.SendPropertyChanged("ViewCount");
-					this.OnViewCountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LikeCount", DbType="Int")]
-		public System.Nullable<int> LikeCount
-		{
-			get
-			{
-				return this._LikeCount;
-			}
-			set
-			{
-				if ((this._LikeCount != value))
-				{
-					this.OnLikeCountChanging(value);
-					this.SendPropertyChanging();
-					this._LikeCount = value;
-					this.SendPropertyChanged("LikeCount");
-					this.OnLikeCountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Bit NOT NULL")]
-		public bool Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortTitle", DbType="NChar(100)")]
-		public string ShortTitle
-		{
-			get
-			{
-				return this._ShortTitle;
-			}
-			set
-			{
-				if ((this._ShortTitle != value))
-				{
-					this.OnShortTitleChanging(value);
-					this.SendPropertyChanging();
-					this._ShortTitle = value;
-					this.SendPropertyChanged("ShortTitle");
-					this.OnShortTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Article_ArticleComment", Storage="_ArticleComments", ThisKey="id", OtherKey="Articleid")]
-		public EntitySet<ArticleComment> ArticleComments
-		{
-			get
-			{
-				return this._ArticleComments;
-			}
-			set
-			{
-				this._ArticleComments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Article", Storage="_Category", ThisKey="Categoryid", OtherKey="id", IsForeignKey=true)]
-		public Category Category
-		{
-			get
-			{
-				return this._Category.Entity;
-			}
-			set
-			{
-				Category previousValue = this._Category.Entity;
+				Article previousValue = this._Article.Entity;
 				if (((previousValue != value) 
-							|| (this._Category.HasLoadedOrAssignedValue == false)))
+							|| (this._Article.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Category.Entity = null;
-						previousValue.Articles.Remove(this);
+						this._Article.Entity = null;
+						previousValue.ArticleComments.Remove(this);
 					}
-					this._Category.Entity = value;
+					this._Article.Entity = value;
 					if ((value != null))
 					{
-						value.Articles.Add(this);
-						this._Categoryid = value.id;
+						value.ArticleComments.Add(this);
+						this._Articleid = value.id;
 					}
 					else
 					{
-						this._Categoryid = default(int);
+						this._Articleid = default(int);
 					}
-					this.SendPropertyChanged("Category");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SubCategory_Article", Storage="_SubCategory", ThisKey="SubCategoryid", OtherKey="id", IsForeignKey=true)]
-		public SubCategory SubCategory
-		{
-			get
-			{
-				return this._SubCategory.Entity;
-			}
-			set
-			{
-				SubCategory previousValue = this._SubCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._SubCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SubCategory.Entity = null;
-						previousValue.Articles.Remove(this);
-					}
-					this._SubCategory.Entity = value;
-					if ((value != null))
-					{
-						value.Articles.Add(this);
-						this._SubCategoryid = value.id;
-					}
-					else
-					{
-						this._SubCategoryid = default(int);
-					}
-					this.SendPropertyChanged("SubCategory");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Article", Storage="_User", ThisKey="Userid", OtherKey="id", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Articles.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Articles.Add(this);
-						this._Userid = value.id;
-					}
-					else
-					{
-						this._Userid = default(int);
-					}
-					this.SendPropertyChanged("User");
+					this.SendPropertyChanged("Article");
 				}
 			}
 		}
@@ -1728,18 +1311,6 @@ namespace apcurs.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ArticleComments(ArticleComment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Article = this;
-		}
-		
-		private void detach_ArticleComments(ArticleComment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Article = null;
 		}
 	}
 	
@@ -2524,11 +2095,11 @@ namespace apcurs.Models
 		
 		private EntitySet<ArticleComment> _ArticleComments;
 		
-		private EntitySet<Article> _Articles;
-		
 		private EntitySet<Answer> _Answers;
 		
 		private EntitySet<Question> _Questions;
+		
+		private EntitySet<Article> _Articles;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2565,9 +2136,9 @@ namespace apcurs.Models
 			this._Messages = new EntitySet<Message>(new Action<Message>(this.attach_Messages), new Action<Message>(this.detach_Messages));
 			this._Messages1 = new EntitySet<Message>(new Action<Message>(this.attach_Messages1), new Action<Message>(this.detach_Messages1));
 			this._ArticleComments = new EntitySet<ArticleComment>(new Action<ArticleComment>(this.attach_ArticleComments), new Action<ArticleComment>(this.detach_ArticleComments));
-			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
 			this._Answers = new EntitySet<Answer>(new Action<Answer>(this.attach_Answers), new Action<Answer>(this.detach_Answers));
 			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
+			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
 			OnCreated();
 		}
 		
@@ -2850,19 +2421,6 @@ namespace apcurs.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Article", Storage="_Articles", ThisKey="id", OtherKey="Userid")]
-		public EntitySet<Article> Articles
-		{
-			get
-			{
-				return this._Articles;
-			}
-			set
-			{
-				this._Articles.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Answer", Storage="_Answers", ThisKey="id", OtherKey="Userid")]
 		public EntitySet<Answer> Answers
 		{
@@ -2886,6 +2444,19 @@ namespace apcurs.Models
 			set
 			{
 				this._Questions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Article", Storage="_Articles", ThisKey="id", OtherKey="Userid")]
+		public EntitySet<Article> Articles
+		{
+			get
+			{
+				return this._Articles;
+			}
+			set
+			{
+				this._Articles.Assign(value);
 			}
 		}
 		
@@ -2945,18 +2516,6 @@ namespace apcurs.Models
 			entity.User = null;
 		}
 		
-		private void attach_Articles(Article entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Articles(Article entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
 		private void attach_Answers(Answer entity)
 		{
 			this.SendPropertyChanging();
@@ -2979,6 +2538,471 @@ namespace apcurs.Models
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+		
+		private void attach_Articles(Article entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Articles(Article entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Article")]
+	public partial class Article : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _ArticleText;
+		
+		private int _Userid;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private int _SubCategoryid;
+		
+		private int _Categoryid;
+		
+		private System.Nullable<int> _ViewCount;
+		
+		private System.Nullable<int> _LikeCount;
+		
+		private bool _Status;
+		
+		private string _ShortTitle;
+		
+		private string _ArticlePicture;
+		
+		private EntitySet<ArticleComment> _ArticleComments;
+		
+		private EntityRef<Category> _Category;
+		
+		private EntityRef<SubCategory> _SubCategory;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnArticleTextChanging(string value);
+    partial void OnArticleTextChanged();
+    partial void OnUseridChanging(int value);
+    partial void OnUseridChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnSubCategoryidChanging(int value);
+    partial void OnSubCategoryidChanged();
+    partial void OnCategoryidChanging(int value);
+    partial void OnCategoryidChanged();
+    partial void OnViewCountChanging(System.Nullable<int> value);
+    partial void OnViewCountChanged();
+    partial void OnLikeCountChanging(System.Nullable<int> value);
+    partial void OnLikeCountChanged();
+    partial void OnStatusChanging(bool value);
+    partial void OnStatusChanged();
+    partial void OnShortTitleChanging(string value);
+    partial void OnShortTitleChanged();
+    partial void OnArticlePictureChanging(string value);
+    partial void OnArticlePictureChanged();
+    #endregion
+		
+		public Article()
+		{
+			this._ArticleComments = new EntitySet<ArticleComment>(new Action<ArticleComment>(this.attach_ArticleComments), new Action<ArticleComment>(this.detach_ArticleComments));
+			this._Category = default(EntityRef<Category>);
+			this._SubCategory = default(EntityRef<SubCategory>);
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ArticleText", DbType="NVarChar(MAX)")]
+		public string ArticleText
+		{
+			get
+			{
+				return this._ArticleText;
+			}
+			set
+			{
+				if ((this._ArticleText != value))
+				{
+					this.OnArticleTextChanging(value);
+					this.SendPropertyChanging();
+					this._ArticleText = value;
+					this.SendPropertyChanged("ArticleText");
+					this.OnArticleTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Userid", DbType="Int NOT NULL")]
+		public int Userid
+		{
+			get
+			{
+				return this._Userid;
+			}
+			set
+			{
+				if ((this._Userid != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUseridChanging(value);
+					this.SendPropertyChanging();
+					this._Userid = value;
+					this.SendPropertyChanged("Userid");
+					this.OnUseridChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubCategoryid", DbType="Int NOT NULL")]
+		public int SubCategoryid
+		{
+			get
+			{
+				return this._SubCategoryid;
+			}
+			set
+			{
+				if ((this._SubCategoryid != value))
+				{
+					if (this._SubCategory.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSubCategoryidChanging(value);
+					this.SendPropertyChanging();
+					this._SubCategoryid = value;
+					this.SendPropertyChanged("SubCategoryid");
+					this.OnSubCategoryidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Categoryid", DbType="Int NOT NULL")]
+		public int Categoryid
+		{
+			get
+			{
+				return this._Categoryid;
+			}
+			set
+			{
+				if ((this._Categoryid != value))
+				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCategoryidChanging(value);
+					this.SendPropertyChanging();
+					this._Categoryid = value;
+					this.SendPropertyChanged("Categoryid");
+					this.OnCategoryidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViewCount", DbType="Int")]
+		public System.Nullable<int> ViewCount
+		{
+			get
+			{
+				return this._ViewCount;
+			}
+			set
+			{
+				if ((this._ViewCount != value))
+				{
+					this.OnViewCountChanging(value);
+					this.SendPropertyChanging();
+					this._ViewCount = value;
+					this.SendPropertyChanged("ViewCount");
+					this.OnViewCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LikeCount", DbType="Int")]
+		public System.Nullable<int> LikeCount
+		{
+			get
+			{
+				return this._LikeCount;
+			}
+			set
+			{
+				if ((this._LikeCount != value))
+				{
+					this.OnLikeCountChanging(value);
+					this.SendPropertyChanging();
+					this._LikeCount = value;
+					this.SendPropertyChanged("LikeCount");
+					this.OnLikeCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Bit NOT NULL")]
+		public bool Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortTitle", DbType="NChar(100)")]
+		public string ShortTitle
+		{
+			get
+			{
+				return this._ShortTitle;
+			}
+			set
+			{
+				if ((this._ShortTitle != value))
+				{
+					this.OnShortTitleChanging(value);
+					this.SendPropertyChanging();
+					this._ShortTitle = value;
+					this.SendPropertyChanged("ShortTitle");
+					this.OnShortTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ArticlePicture", DbType="NVarChar(150)")]
+		public string ArticlePicture
+		{
+			get
+			{
+				return this._ArticlePicture;
+			}
+			set
+			{
+				if ((this._ArticlePicture != value))
+				{
+					this.OnArticlePictureChanging(value);
+					this.SendPropertyChanging();
+					this._ArticlePicture = value;
+					this.SendPropertyChanged("ArticlePicture");
+					this.OnArticlePictureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Article_ArticleComment", Storage="_ArticleComments", ThisKey="id", OtherKey="Articleid")]
+		public EntitySet<ArticleComment> ArticleComments
+		{
+			get
+			{
+				return this._ArticleComments;
+			}
+			set
+			{
+				this._ArticleComments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Article", Storage="_Category", ThisKey="Categoryid", OtherKey="id", IsForeignKey=true)]
+		public Category Category
+		{
+			get
+			{
+				return this._Category.Entity;
+			}
+			set
+			{
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.Articles.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.Articles.Add(this);
+						this._Categoryid = value.id;
+					}
+					else
+					{
+						this._Categoryid = default(int);
+					}
+					this.SendPropertyChanged("Category");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SubCategory_Article", Storage="_SubCategory", ThisKey="SubCategoryid", OtherKey="id", IsForeignKey=true)]
+		public SubCategory SubCategory
+		{
+			get
+			{
+				return this._SubCategory.Entity;
+			}
+			set
+			{
+				SubCategory previousValue = this._SubCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._SubCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SubCategory.Entity = null;
+						previousValue.Articles.Remove(this);
+					}
+					this._SubCategory.Entity = value;
+					if ((value != null))
+					{
+						value.Articles.Add(this);
+						this._SubCategoryid = value.id;
+					}
+					else
+					{
+						this._SubCategoryid = default(int);
+					}
+					this.SendPropertyChanged("SubCategory");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Article", Storage="_User", ThisKey="Userid", OtherKey="id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Articles.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Articles.Add(this);
+						this._Userid = value.id;
+					}
+					else
+					{
+						this._Userid = default(int);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ArticleComments(ArticleComment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Article = this;
+		}
+		
+		private void detach_ArticleComments(ArticleComment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Article = null;
 		}
 	}
 }

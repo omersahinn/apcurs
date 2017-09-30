@@ -11,12 +11,12 @@
 
 
 
-    <nav class="site__nav">
-      <ul style="padding-left:500px;margin-top:30px">
-          <li><a class="site__nav-item" href="#about-me" data-toggle="about-section">Sorular</a></li>
-          <li><a class="site__nav-item" href="#blog" data-toggle="article-section">Makaleler</a> </li>
-      </ul>
-    </nav>
+<nav class="site__nav">
+    <ul style="padding-left:500px;margin-top:30px">
+        <li><a class="site__nav-item" href="#about-me" data-toggle="about-section">Sorular</a></li>
+        <li><a class="site__nav-item" href="#blog" data-toggle="article-section">Makaleler</a> </li>
+    </ul>
+</nav>
 
 
 
@@ -80,662 +80,86 @@
                                     </div>
                                 }
 
-
-
                             </div>
 
 
                             <div class="tab-pane fade" id="profile">
 
+                                @foreach (var item in Model.notAnsweredQuestion)
+                                {
+
                                 <div class="question-summary narrow">
                                     <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
+                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
                                         <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
+                                            <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
                                             <div>oylama</div>
                                         </div>
                                         <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
+
+                                            <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
                                             <div>cevap</div>
                                         </div>
                                         <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
+                                            <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
                                             <div>görüntüleme</div>
                                         </div>
                                     </div>
                                     <div class="image display_none">
 
-                                        <div class="summary" style="width:540px;">
+                                        <div class="summary" style="width:310px;">
 
-                                            <h3><a href="" class="question-hyperlink">Will CLR check the whole inheritance chain to determine which virtual method to call?</a></h3>
+                                            <h3 style="margin-top:0;"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
 
                                             <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
+
+                                                <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                }
 
 
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="tab-pane fade" id="profile1">
+
+                                @foreach (var item in Model.mostViewedQuestion)
+                                {
+
                                 <div class="question-summary narrow">
                                     <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
+                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
                                         <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
+                                            <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
                                             <div>oylama</div>
                                         </div>
                                         <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
+
+                                            <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
                                             <div>cevap</div>
                                         </div>
                                         <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
+                                            <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
                                             <div>görüntüleme</div>
                                         </div>
                                     </div>
                                     <div class="image display_none">
 
-                                        <div class="summary" style="width:540px;">
+                                        <div class="summary" style="width:310px;">
 
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
+                                            <h3 style="margin-top:0;"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
 
                                             <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
+
+                                                <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
+                                }
 
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:540px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
 
@@ -796,7 +220,7 @@
 
 
                         <ul class="nav nav-tabs" style="width:100%;">
-                            <li class="active"><a href="#home" data-toggle="tab">Son Makaleler</a></li>
+                            <li class="active"><a href="#home1" data-toggle="tab">Son Makaleler</a></li>
                             <li><a href="#profile2" data-toggle="tab">En Çok Beğenilen Makaleler</a></li>
                             <li> <a href="#profile3" data-toggle="tab">En Çok Okunan Makaleler </a></li>
 
@@ -804,263 +228,66 @@
 
                         <div class="tab-content" id="myTabContent">
 
-                            <div class="tab-pane fade active in" id="home">
+                            <div class="tab-pane fade active in" id="home1">
 
 
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:310px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
+                                @foreach (var item in Model.lastArticles)
+                                {
+                                    <div class="row service-wrapper-row">
+                                        <div class="col-sm-4">
+                                            <div class="service-image">
+                                                <img src="@item.articlePicture" alt="Color Schemes" width="200" height="110">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:310px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
+                                        <div class="col-sm-7">
+                                            <h3 style="margin-top:0px;font-size:20px;">@item.shortTitle</h3>
+                                            <p>
+                                                @item.articleText
+                                            </p>
 
                                             <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
+                                                <ul style="  list-style: none outside none;">
+                                                    <li style="display:inline;position: relative;">
+                                                        <span title="">5</span>
+                                                        <div>oylama</div>
+                                                    </li>
+
+                                                    <li style="display:inline;position: relative;">
+                                                        <span title="">5</span>
+                                                        <div>cevap</div>
+                                                    </li>
+
+                                                    <li style="display:inline;position: relative;">
+                                                        <span title="">5</span>
+                                                        <div>görüntüleme</div>
+                                                    </li>
+
+                                                </ul>
+                                                
+                                               
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:310px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
+                                         
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
 
+                                        </div>
+
+                                }
 
                             </div>
 
 
                             <div class="tab-pane fade" id="profile2">
 
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
 
-                                        <div class="summary" style="width:310px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:310px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
+
+
 
                             <div class="tab-pane fade" id="profile3">
 
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:310px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
 
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:310px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="question-summary narrow">
-                                    <div class="cp">
-                                        <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="Rajdip Sarkar"><img width="60" height="60" class="userImage" alt="Rajdip Sarkar" src="http://csharpcorner.mindcrackerinc.netdna-cdn.com/UploadFile/AuthorImage/0ee9bd20170420030328.jpg.ashx?width=88&amp;height=88"></a>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>oylama</div>
-                                        </div>
-                                        <div class="status unanswered" style="margin:0;">
-                                            <div class="mini-counts"><span title="0 answers">0</span></div>
-                                            <div>cevap</div>
-                                        </div>
-                                        <div class="views" style="margin:0;">
-                                            <div class="mini-counts"><span title="1 view">1</span></div>
-                                            <div>görüntüleme</div>
-                                        </div>
-                                    </div>
-                                    <div class="image display_none">
-
-                                        <div class="summary" style="width:310px;">
-
-                                            <h3><a href="" class="question-hyperlink">Read keys StartWith some text Firebase</a></h3>
-
-                                            <div class="started" style="float:left;">
-                                                <a href="/questions/46000852/how-to-login-using-the-mobile-number-in-django-rest-framework" class="started-link">asked <span title="2017-09-01 13:01:36Z" class="relativetime">1 min ago</span></a>
-                                                <a href="/users/2597209/user2597209">user2597209</a> <span class="reputation-score" title="reputation score " dir="ltr">8</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
 
@@ -1112,5 +339,5 @@
 </div>
 
 
-    <script src="~/Scripts/app.js"></script>
- 
+<script src="~/Scripts/app.js"></script>
+

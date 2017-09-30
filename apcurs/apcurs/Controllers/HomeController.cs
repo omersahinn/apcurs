@@ -73,14 +73,11 @@ namespace apcurs.Controllers
             QuestionModel qmodel = new QuestionModel();
             ArticleModel amodel = new ArticleModel();
 
-           
 
-            var temp = (from q in db.Questions.ToList()
-                        join a in db.Answers.ToList() on q.id equals a.Questionid
-                        where q.id == a.Questionid
+            var temp = (from q in db.GetTable<Question>()
                         select new QuestionModel()
                         {
-
+                            
                             id = q.id,
                             user = q.User,
                             subCategory = q.SubCategory,
@@ -93,55 +90,53 @@ namespace apcurs.Controllers
                             shortTitle = q.ShortTitle,
                         }).ToList();
 
+
+
             foreach (var item in temp)
             {
                 item.answers = db.Answers.Where(a => a.Questionid == item.id).ToList();
             }
 
 
-            //var temp2 = (from q in db.Articles.ToList()
-            //            join a in db.ArticleComments.ToList() on q.id equals a.Articleid
-            //            where q.id == a.Articleid
-            //            select new ArticleModel
-            //            {
+            var temp2 = (from q in db.Articles.ToList()
+                         select new ArticleModel
+                         {
 
-            //                id = q.id,
-            //                user = q.User,
-            //                subCategory = q.SubCategory,
-            //                category = q.Category,
-            //                articleText = q.ArticleText,
-            //                createdDate = q.CreatedDate,
-            //                viewCount = q.ViewCount,
-            //                likeCount = q.LikeCount,
-            //                shortTitle = q.ShortTitle,
-            //                comment = a
+                             id = q.id,
+                             user = q.User,
+                             subCategory = q.SubCategory,
+                             category = q.Category,
+                             articleText = q.ArticleText,
+                             createdDate = q.CreatedDate,
+                             viewCount = q.ViewCount,
+                             likeCount = q.LikeCount,
+                             shortTitle = q.ShortTitle,      
+                             articlePicture=q.ArticlePicture
+                         }).ToList();
 
-            //            }).ToList();
-
-            //foreach (var item2 in temp2)
-            //{
-            //    item2.comment = db.Answers.Where(a => a.Questionid == item2.id).ToList();
-            //}
+            foreach (var item2 in temp2)
+            {
+                item2.comment = db.ArticleComments.Where(a => a.Articleid == item2.id).ToList();
+            }
 
 
             var Lastquestion = temp.OrderByDescending(a => a.createdDate).Take(20);        
-            var Votedanswer =temp.OrderByDescending(a => a.voteCount).Take(20);
+            var NotAnsweredQuestion =temp.Where(c=>c.answers.Count==0).OrderByDescending(a => a.voteCount).Take(20);
             var Viewedanswer = temp.OrderByDescending(a => a.viewCount).Take(20);
 
-            //var Lastarticle = temp2.OrderByDescending(a => a.createdDate).Take(20);
-            //var Likedarticle = temp2.OrderByDescending(a => a.likeCount).Take(20);
-            //var Viewedarticle = temp2.OrderByDescending(a => a.viewCount).Take(20);
+            var Lastarticle = temp2.OrderByDescending(a => a.createdDate).Take(20);
+            var Likedarticle = temp2.OrderByDescending(a => a.likeCount).Take(20);
+            var Viewedarticle = temp2.OrderByDescending(a => a.viewCount).Take(20);
+
 
             model.lastQuestions = Lastquestion;
-            model.mostVotedQuestion = Votedanswer;
+            model.notAnsweredQuestion = NotAnsweredQuestion;
             model.mostViewedQuestion = Viewedanswer;
 
-            //model.lastArticles = Lastarticle;
-            //model.mostLikedArticles = Likedarticle;
-            //model.mostViewedArticles = Viewedarticle;
-
-
-
+            model.lastArticles = Lastarticle;
+            model.mostLikedArticles = Likedarticle;
+            model.mostViewedArticles = Viewedarticle;
+            
 
             return View(model);
         }
