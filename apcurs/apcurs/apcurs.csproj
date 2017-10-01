@@ -226,6 +226,7 @@
     <Content Include="Views\Account\Confirm.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

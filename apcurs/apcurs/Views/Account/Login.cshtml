@@ -45,7 +45,7 @@
                                 @Html.CheckBoxFor(m => m.RememberMe)
                                 @Html.LabelFor(m => m.RememberMe)
                             </div>
-                            <a href="page-password-reset.html" class="forgot-password">Şifremi Unuttum</a>
+                            <a href="@Url.Action("ResetPassword","Account")" class="forgot-password">Şifremi Unuttum</a>
                             <button type="submit" class="btn pull-right">Giriş</button>
                             <div class="clearfix"></div>
                         </div>

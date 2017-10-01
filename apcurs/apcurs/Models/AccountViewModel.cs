@@ -8,6 +8,18 @@ namespace apcurs.Models
 {
     public class AccountViewModel
     {
+
+        public class ResetPasswordModel
+        {
+            [Required(ErrorMessage = "Sıfırlama Linki İçin Email Adresiniz Gerekli")]
+            [Display(Name = "Email")]
+            [EmailAddress(ErrorMessage = "Lütfen Geçerli Bir Eposta Adresi Giriniz.")]
+            public string Email { get; set; }
+        }
+
+
+
+
         //public class ExternalLoginConfirmationViewModel
         //{
         //    [Required]

@@ -208,6 +208,78 @@ namespace apcurs.Controllers
 
         }
 
+        public ActionResult ResetPassword()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ResetPassword(string email)
+        {
+            //if (ModelState.IsValid)
+            //{
+            //    MembershipUser user;
+            //    using (var context = new UsersContext())
+            //    {
+            //        var foundUserName = (from u in context.UserProfiles
+            //                             where u.Email == model.Email
+            //                             select u.UserName).FirstOrDefault();
+            //        if (foundUserName != null)
+            //        {
+            //            user = Membership.GetUser(foundUserName.ToString());
+            //        }
+            //        else
+            //        {
+            //            user = null;
+            //        }
+            //    }
+            //    if (user != null)
+            //    {
+            //        // Generae password token that will be used in the email link to authenticate user
+            //        var token = WebSecurity.GeneratePasswordResetToken(user.UserName);
+            //        // Generate the html link sent via email
+            //        string resetLink = "<a href='"
+            //           + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
+            //           + "'>Reset Password Link</a>";
+
+            //        // Email stuff
+            //        string subject = "Reset your password for asdf.com";
+            //        string body = "You link: " + resetLink;
+            //        string from = "donotreply@asdf.com";
+
+            //        MailMessage message = new MailMessage(from, model.Email);
+            //        message.Subject = subject;
+            //        message.Body = body;
+            //        SmtpClient client = new SmtpClient();
+
+            //        // Attempt to send the email
+            //        try
+            //        {
+            //            client.Send(message);
+            //        }
+            //        catch (Exception e)
+            //        {
+            //            ModelState.AddModelError("", "Issue sending email: " + e.Message);
+            //        }
+            //    }
+            //    else // Email not found
+            //    {
+            //        /* Note: You may not want to provide the following information
+            //        * since it gives an intruder information as to whether a
+            //        * certain email address is registered with this website or not.
+            //        * If you're really concerned about privacy, you may want to
+            //        * forward to the same "Success" page regardless whether an
+            //        * user was found or not. This is only for illustration purposes.
+            //        */
+            //        ModelState.AddModelError("", "No user found by that email.");
+            //    }
+            //}
+
+      
+            return View();
+
+        }
         ////
         //// POST: /Account/Disassociate
         //[HttpPost]
@@ -544,7 +616,7 @@ namespace apcurs.Controllers
 
 
 
-    
+
 
 
         //[HttpPost]    
