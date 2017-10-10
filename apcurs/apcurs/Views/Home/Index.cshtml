@@ -4,21 +4,51 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <link href="~/Content/home.css" rel="stylesheet" />
 <link href="~/Content/question.css" rel="stylesheet" />
 <link href="~/Content/menu.css" rel="stylesheet" />
+<link href="~/Content/main.css" rel="stylesheet" />
 
 
+<div class="homepage-slider" style="height:300px">
+    <div id="sequence">
+        <ul class="sequence-canvas">
 
-<nav class="site__nav">
-    <ul style="padding-left:500px;margin-top:30px">
-        <li><a class="site__nav-item" href="#about-me" data-toggle="about-section">Sorular</a></li>
-        <li><a class="site__nav-item" href="#blog" data-toggle="article-section">Makaleler</a> </li>
-    </ul>
-</nav>
-
-
+            <li class="bg4">
+                <!-- Slide Title -->
+                <h2 class="title">Responsive</h2>
+                <!-- Slide Text -->
+                <h3 class="subtitle">It looks great on desktops, laptops, tablets and smartphones</h3>
+                <!-- Slide Image -->
+                <img class="slide-img" src="~/img/slide1.png" alt="Slide 1" />
+            </li>
+            <li class="bg3 animate-in" style="display: list-item; opacity: 1; z-index: 3;">
+                <!-- Slide Title -->
+                <h2 class="title" style="">Color Schemes</h2>
+                <!-- Slide Text -->
+                <h3 class="subtitle" style="">Comes with 5 color schemes and it's easy to make your own!</h3>
+                <!-- Slide Image -->
+                <img class="slide-img" src="~/img/slide2.png" alt="Slide 2" style="">
+            </li>
+            <li class="bg1 animate-in" style="display: list-item; opacity: 1; z-index: 3;">
+                <!-- Slide Title -->
+                <h2 class="title" style="">Feature Rich</h2>
+                <!-- Slide Text -->
+                <h3 class="subtitle" style="">Huge amount of components and over 30 sample pages!</h3>
+                <!-- Slide Image -->
+                <img class="slide-img" src="~/img/slide3.png" alt="Slide 3" style="">
+            </li>
+         
+        </ul>
+        <div class="sequence-pagination-wrapper">
+            <ul class="sequence-pagination">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 
 <div class="section" style="padding-bottom:1900px;">
@@ -47,38 +77,38 @@
 
                                 @foreach (var item in Model.lastQuestions)
                                 {
-                                    <div class="pricing-plan service-wrapper-row" style="width:835px;height:120px;margin-top:5px;margin-bottom:0;">
-                                        <div class="question-summary narrow">
-                                            <div class="cp">
-                                                <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
-                                                <div class="status unanswered" style="margin:0;">
-                                                    <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
-                                                    <div>oylama</div>
-                                                </div>
-                                                <div class="status unanswered" style="margin:0;">
 
-                                                    <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
-                                                    <div>cevap</div>
-                                                </div>
-                                                <div class="views" style="margin:0;">
-                                                    <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                    <div>görüntüleme</div>
-                                                </div>
+                                    <div class="question-summary narrow col-sm-2">
+                                        <div class="cp">
+                                            <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
+                                            <div class="status unanswered" style="margin:0;">
+                                                <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
+                                                <div>oylama</div>
                                             </div>
-                                            <div class="image display_none">
+                                            <div class="status unanswered" style="margin:0;">
 
-                                                <div class="summary" style="width:550px;">
+                                                <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
+                                                <div>cevap</div>
+                                            </div>
+                                            <div class="views" style="margin:0;">
+                                                <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
+                                                <div>görüntüleme</div>
+                                            </div>
+                                        </div>
+                                        <div class="image display_none">
 
-                                                    <h3 style="margin-top:0;padding:0;margin-left:5px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
+                                            <div class="summary" style="width:550px;">
 
-                                                    <div class="started" style="float:left;margin-left:23px">
+                                                <h3 style="margin-top:30px;padding:0;margin-left:5px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
 
-                                                        <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
-                                                    </div>
+                                                <div class="started" style="float:left;margin-left:23px">
+
+                                                    <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                              
                                 }
 
 
@@ -90,39 +120,39 @@
                                 {
 
 
-                                    <div class="pricing-plan service-wrapper-row" style="width:835px;height:120px;margin-top:5px;margin-bottom:0;">
-                                        <div class="question-summary narrow">
-                                            <div class="cp">
-                                                <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
-                                                <div class="status unanswered" style="margin:0;">
-                                                    <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
-                                                    <div>oylama</div>
-                                                </div>
-                                                <div class="status unanswered" style="margin:0;">
-
-                                                    <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
-                                                    <div>cevap</div>
-                                                </div>
-                                                <div class="views" style="margin:0;">
-                                                    <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                    <div>görüntüleme</div>
-                                                </div>
+                                    @*<div class="pricing-plan service-wrapper-row" style="width:835px;height:120px;margin-top:5px;margin-bottom:0;">*@
+                                    <div class="question-summary narrow">
+                                        <div class="cp">
+                                            <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
+                                            <div class="status unanswered" style="margin:0;">
+                                                <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
+                                                <div>oylama</div>
                                             </div>
-                                            <div class="image display_none">
+                                            <div class="status unanswered" style="margin:0;">
 
-                                                <div class="summary" style="width:550px;">
+                                                <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
+                                                <div>cevap</div>
+                                            </div>
+                                            <div class="views" style="margin:0;">
+                                                <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
+                                                <div>görüntüleme</div>
+                                            </div>
+                                        </div>
+                                        <div class="image display_none">
 
-                                                    <h3 style="margin-top:0;padding:0;margin-left:13px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
+                                            <div class="summary" style="width:550px;">
 
-                                                    <div class="started" style="float:left;margin-left:13px">
+                                                <h3 style="margin-top:30px;padding:0;margin-left:13px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
 
-                                                        <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
-                                                    </div>
+                                                <div class="started" style="float:left;margin-left:13px">
+
+                                                    <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                             
+                                        @*</div>*@
+
                                 }
 
 
@@ -134,38 +164,38 @@
                                 {
 
 
-                                    <div class="pricing-plan service-wrapper-row" style="width:835px;height:120px;margin-top:5px;margin-bottom:0;">
-                                        <div class="question-summary narrow">
-                                            <div class="cp">
-                                                <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
-                                                <div class="status unanswered" style="margin:0;">
-                                                    <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
-                                                    <div>oylama</div>
-                                                </div>
-                                                <div class="status unanswered" style="margin:0;">
-
-                                                    <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
-                                                    <div>cevap</div>
-                                                </div>
-                                                <div class="views" style="margin:0;">
-                                                    <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                    <div>görüntüleme</div>
-                                                </div>
+                                 
+                                    <div class="question-summary narrow">
+                                        <div class="cp">
+                                            <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
+                                            <div class="status unanswered" style="margin:0;">
+                                                <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
+                                                <div>oylama</div>
                                             </div>
-                                            <div class="image display_none">
+                                            <div class="status unanswered" style="margin:0;">
 
-                                                <div class="summary" style="width:550px;">
+                                                <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
+                                                <div>cevap</div>
+                                            </div>
+                                            <div class="views" style="margin:0;">
+                                                <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
+                                                <div>görüntüleme</div>
+                                            </div>
+                                        </div>
+                                        <div class="image display_none">
 
-                                                    <h3 style="margin-top:0;padding:0;margin-left:13px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
+                                            <div class="summary" style="width:550px;">
 
-                                                    <div class="started" style="float:left;margin-left:13px">
+                                                <h3 style="margin-top:30;padding:0;margin-left:13px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
 
-                                                        <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
-                                                    </div>
+                                                <div class="started" style="float:left;margin-left:13px">
+
+                                                    <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                              
                                 }
 
                             </div>
@@ -176,211 +206,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4" style="margin-top:40px;">
-
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Blog</h3>
-                        </div>
-                        <div class="panel-body">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#">Bermuda Şeytan Üçgeni’nde Yaşananların Bilimsel Açıklamaları</a>
-                                    <hr style="margin-top:0;margin-bottom:0" />
-                                </li>
-                                <li>
-                                    <a href="#">Muz Oyma Sanatı</a>
-                                    <hr style="margin-top:0;margin-bottom:0" />
-                                </li>
-                                <li>
-                                    <a href="#">Ali İsmail Korkmaz Ölümünün 4.yılında Anıldı.</a>
-                                    <hr style="margin-top:0;margin-bottom:0" />
-                                </li>
-                                <li>
-                                    <a href="#">Kartal Bebek Kimdir? Neden Twitter’da Gündem Oldu</a>
-                                    <hr style="margin-top:0;margin-bottom:0" />
-                                </li>
-                                <li>
-                                    <a href="#">Dünyanın En Tecrübeli 8 Stoperi ve Oynadıkları Kulüpler</a>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <div class="home__blog">
-        <div class="section" style="padding:0;">
-
-            <div class="row" style="margin-left:160px;margin-top:30px;width:1300px">
-                <div class="col-md-8">
-
-                    <div class="card">
-
-
-                        <ul class="nav nav-tabs" style="width:100%;">
-                            <li class="active"><a href="#home1" data-toggle="tab">Son Makaleler</a></li>
-                            <li><a href="#profile2" data-toggle="tab">En Çok Beğenilen Makaleler</a></li>
-                            <li> <a href="#profile3" data-toggle="tab">En Çok Okunan Makaleler </a></li>
-
-                        </ul>
-
-                        <div class="tab-content" id="myTabContent">
-
-                            <div class="tab-pane fade active in" id="home1">
-
-
-                                @foreach (var item in Model.lastArticles)
-                                {
-                                    <div class="pricing-plan service-wrapper-row" style="width:835px;height:185px;margin-bottom:0;margin-top:5px;">
-                                        <div class="col-sm-5">
-                                            <div class="service-image" style="padding:0">
-                                                <img src="@item.articlePicture" alt="Color Schemes" width="200" height="110">
-                                            </div>
-                                            <div class="narrow">
-
-
-                                                <div class="cp" style="margin-left:60px;margin-top:10px">
-                                                    <div class="votes">
-                                                        <div class="mini-counts"><span title="@item.likeCount Beğeni">@item.likeCount</span></div>
-                                                        <div>Beğeni</div>
-                                                    </div>
-                                                    <div class="status unanswered">
-                                                        <div class="mini-counts"><span title="@item.comment.Count() Yorum">@item.comment.Count()</span></div>
-                                                        <div>Yorum</div>
-                                                    </div>
-                                                    <div class="views">
-                                                        <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                        <div>Görüntüleme</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <h3 style="margin-top:0px;font-size:20px;">@item.shortTitle</h3>
-                                            <p>
-                                                @item.articleText
-                                            </p>
-
-                                      
-
-                                        </div>
-
-                                    </div>
-
-                                }
-
-                            </div>
-
-
-                            <div class="tab-pane fade" id="profile2">
-
-                                @foreach (var item in Model.mostLikedArticles)
-                                {
-                                    <div class="pricing-plan service-wrapper-row" style="width:835px;height:185px;margin-bottom:0;margin-top:5px;">
-                                        <div class="col-sm-5">
-                                            <div class="service-image" style="padding:0">
-                                                <img src="@item.articlePicture" alt="Color Schemes" width="200" height="110">
-                                            </div>
-                                            <div class="narrow">
-
-
-                                                <div class="cp" style="margin-left:60px;margin-top:10px">
-                                                    <div class="votes">
-                                                        <div class="mini-counts"><span title="@item.likeCount Beğeni">@item.likeCount</span></div>
-                                                        <div>Beğeni</div>
-                                                    </div>
-                                                    <div class="status unanswered">
-                                                        <div class="mini-counts"><span title="@item.comment.Count() Yorum">@item.comment.Count()</span></div>
-                                                        <div>Yorum</div>
-                                                    </div>
-                                                    <div class="views">
-                                                        <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                        <div>Görüntüleme</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <h3 style="margin-top:0px;font-size:20px;">@item.shortTitle</h3>
-                                            <p>
-                                                @item.articleText
-                                            </p>
-
-
-
-                                        </div>
-
-                                    </div>
-
-                                }
-
-
-                            </div>
-
-
-
-                            <div class="tab-pane fade" id="profile3">
-
-                                @foreach (var item in Model.mostViewedArticles)
-                                {
-                                    <div class="pricing-plan service-wrapper-row" style="width:835px;height:185px;margin-bottom:0;margin-top:5px;">
-                                        <div class="col-sm-5">
-                                            <div class="service-image" style="padding:0">
-                                                <img src="@item.articlePicture" alt="Color Schemes" width="200" height="110">
-                                            </div>
-                                            <div class="narrow">
-
-
-                                                <div class="cp" style="margin-left:60px;margin-top:10px">
-                                                    <div class="votes">
-                                                        <div class="mini-counts"><span title="@item.likeCount Beğeni">@item.likeCount</span></div>
-                                                        <div>Beğeni</div>
-                                                    </div>
-                                                    <div class="status unanswered">
-                                                        <div class="mini-counts"><span title="@item.comment.Count() Yorum">@item.comment.Count()</span></div>
-                                                        <div>Yorum</div>
-                                                    </div>
-                                                    <div class="views">
-                                                        <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                        <div>Görüntüleme</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <h3 style="margin-top:0px;font-size:20px;">@item.shortTitle</h3>
-                                            <p>
-                                                @item.articleText
-                                            </p>
-
-
-
-                                        </div>
-
-                                    </div>
-
-                                }
-
-
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4" style="margin-top:40px;">
+                <div class="col-md-4 visible-lg" style="margin-top:40px;">
 
                     <div class="panel panel-info">
                         <div class="panel-heading">
@@ -424,3 +250,12 @@
 
 
 <script src="~/Scripts/app.js"></script>
+<script src="~/Scripts/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery.bxslider.js"></script>
+<script src="~/Scripts/jquery.fitvids.js"></script>
+<script src="~/Scripts/jquery.sequence-min.js"></script>
+<script src="~/Scripts/jquery.sequence.js"></script>
+<script src="~/Scripts/main-menu.js"></script>
+<script src="~/Scripts/template.js"></script>

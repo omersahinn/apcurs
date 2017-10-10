@@ -125,36 +125,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\a.png" />
-    <Content Include="Content\blog.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\coming-soon-social.css" />
-    <Content Include="Content\home.css" />
-    <Content Include="Content\icomoon-social.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\leaflet.css" />
-    <Content Include="Content\leaflet.ie.css" />
-    <Content Include="Content\main-green.css" />
-    <Content Include="Content\main-grey.css" />
-    <Content Include="Content\main-orange.css" />
-    <Content Include="Content\main-red.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\question.css" />
-    <Content Include="Content\style.css" />
+    <Content Include="Content\TopMenu.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\._ease.min.js" />
-    <Content Include="Scripts\._segment.min.js" />
-    <Content Include="Scripts\angular-translate.min.js" />
+    <Content Include="img\slide1.png" />
+    <Content Include="img\slide2.png" />
+    <Content Include="img\slide3.png" />
+    <Content Include="img\slider-bg1.jpg" />
+    <Content Include="img\slider-bg10.jpg" />
+    <Content Include="img\slider-bg11.jpg" />
+    <Content Include="img\slider-bg12.jpg" />
+    <Content Include="img\slider-bg13.jpg" />
+    <Content Include="img\slider-bg14.jpg" />
+    <Content Include="img\slider-bg2.jpg" />
+    <Content Include="img\slider-bg3.jpg" />
+    <Content Include="img\slider-bg4.jpg" />
+    <Content Include="img\slider-bg5.jpg" />
+    <Content Include="img\slider-bg6.jpg" />
+    <Content Include="img\slider-bg7.jpg" />
+    <Content Include="img\slider-bg8.jpg" />
+    <Content Include="img\slider-bg9.jpg" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\ease.min.js" />
-    <Content Include="Scripts\en_US.js" />
-    <Content Include="Scripts\global.js" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -166,32 +167,15 @@
     <None Include="Models\Db.dbml.layout">
       <DependentUpon>Db.dbml</DependentUpon>
     </None>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.bxslider.js" />
     <Content Include="Scripts\jquery.fitvids.js" />
-    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.sequence-min.js" />
     <Content Include="Scripts\jquery.sequence.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main-menu.js" />
-    <Content Include="Scripts\main.js" />
-    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.6.2-respond-1.1.0.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\pace.min.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\segment.min.js" />
     <Content Include="Scripts\template.js" />
-    <Content Include="Scripts\tr_TR.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -221,7 +205,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\TopMenu.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\UserRegister.cshtml" />
     <Content Include="Views\Account\Confirm.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
@@ -236,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="icons\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
