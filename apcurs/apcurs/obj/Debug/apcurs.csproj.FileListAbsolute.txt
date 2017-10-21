@@ -138,3 +138,8 @@ C:\Users\ömer\Documents\apcurs\apcurs\apcurs\bin\System.Web.Mvc.xml
 C:\Users\ömer\Documents\apcurs\apcurs\apcurs\obj\Debug\apcurs.csprojResolveAssemblyReference.cache
 C:\Users\ömer\Documents\apcurs\apcurs\apcurs\obj\Debug\apcurs.dll
 C:\Users\ömer\Documents\apcurs\apcurs\apcurs\obj\Debug\apcurs.pdb
+C:\Users\ömer\Documents\apcurs\apcurs\apcurs\bin\WebMatrix.Data.dll
+C:\Users\ömer\Documents\apcurs\apcurs\apcurs\bin\WebMatrix.WebData.dll
+C:\Users\ömer\Documents\apcurs\apcurs\apcurs\bin\WebMatrix.Data.xml
+C:\Users\ömer\Documents\apcurs\apcurs\apcurs\bin\WebMatrix.WebData.xml
+C:\Users\ömer\Documents\apcurs\apcurs\apcurs\bin\Microsoft.Web.Helpers.dll

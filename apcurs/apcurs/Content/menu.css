@@ -15,7 +15,7 @@ cp {
 
 .question-summary {
     width: 100%;
-    border-bottom: 1px solid #eff0f1
+    border-bottom: 1px inset;
 }
 
 .user-show-new .count-cell, .user-show-new .icon-cell {

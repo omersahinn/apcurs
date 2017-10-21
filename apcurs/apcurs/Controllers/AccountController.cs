@@ -1,84 +1,20 @@
 ﻿using apcurs.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
 using System;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using static apcurs.Models.AccountViewModel;
+using System.Web.Security;
 
 namespace apcurs.Controllers
-{           
+{
 
     public class AccountController : Controller
     {
-        
+
         DbDataContext db = new DbDataContext();
-
-        public string GetErrorMessage(Exception ex)
-        {
-            StringBuilder errorMessage = new StringBuilder(200);
-
-            errorMessage.AppendFormat("<div class=\"validation-summary-error\" title=\"Server Error\">{0}</div>", ex.GetBaseException().Message);
-            Response.StatusCode = (int)HttpStatusCode.InternalServerError;  //jquerymodal'a 500 hata kodunu gönderiyor
-
-            return errorMessage.ToString();
-        }
-     
-
-        [AllowAnonymous]
-        public ActionResult Login()
-        {
-
-            LoginViewModel log = new LoginViewModel();
-
-            return View(log);
-        }
-
-        
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = db.Users.Where(a => a.UserName == model.UserName && a.Password == model.Password).FirstOrDefault();
-                if (user != null)
-                {
-                    if (user.ConfirmedEmail == true)
-                    {
-                        Session["user"] = user;
-                        return RedirectToAction("Loggedin");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Lütfen Email Adresinizi Onaylayın");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Geçersiz Kullanıcı Adı veya Şifre");
-                }
-            }
-            return View(model);
-        }
-        public ActionResult Loggedin()
-        {
-            if (Session["user"]!=null)
-            {
-                return RedirectToAction("Index","Home");
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
 
         public static string GetClientIp()
         {
@@ -92,7 +28,73 @@ namespace apcurs.Controllers
                 ipAddress = System.Web.HttpContext.Current.Request.UserHostName;
             return ipAddress;
         }
+
+        public string GetErrorMessage(Exception ex)
+        {
+            StringBuilder errorMessage = new StringBuilder(200);
+
+            errorMessage.AppendFormat("<div class=\"validation-summary-error\" title=\"Server Error\">{0}</div>", ex.GetBaseException().Message);
+            Response.StatusCode = (int)HttpStatusCode.InternalServerError;  //jquerymodal'a 500 hata kodunu gönderiyor
+
+            return errorMessage.ToString();
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+
+            LoginViewModel log = new LoginViewModel();
+
+            return View(log);
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginViewModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
         
+            var encryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(model.Password, "md5");
+            var user = db.Users.Where(a => a.UserName == model.UserName || a.Email==model.UserName && a.Password == encryptedPassword).FirstOrDefault();
+            if (user != null)
+            {
+                if (user.ConfirmedEmail == true)
+                {
+                    Session["user"] = user;
+                    return RedirectToAction("Loggedin");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Lütfen Email Adresinizi Onaylayın");
+                }
+            }
+
+            
+            ModelState.AddModelError("", "Geçersiz Kullanıcı Adı veya Şifre");
+            ModelState.Remove("Password");
+            return View(model);
+        }
+        public ActionResult Loggedin()
+        {
+            if (Session["user"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+      
+
 
         [AllowAnonymous]
         public ActionResult UserRegister()
@@ -100,71 +102,86 @@ namespace apcurs.Controllers
             return View();
         }
 
-   
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult UserRegister(Models.RegisterViewModel model)
+        public ActionResult UserRegister(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
 
             }
+            var users = db.Users.ToList();
+            bool IsExistUserName = false;
+            bool IsExistEmail = false;
+
             try
             {
-                var users = db.Users.ToList();
-                bool IsExist=false;
+
                 foreach (var item in users)
                 {
-                    if (model.UserName==item.UserName)
+                    if (model.UserName == item.UserName)
                     {
-                        IsExist = true;
+                        IsExistUserName = true;
+                    }
+                    if (model.Email == item.Email)
+                    {
+                        IsExistEmail = true;
                     }
                 }
-                if (IsExist==false)
+                if (IsExistUserName == false)
                 {
-                    User user = new Models.User();
-                    user.UserName = model.UserName;
-                    user.Password = model.Password;
-                    user.CreatedDate = DateTime.Now;
-                    user.Status = true;
-                    user.Email = model.Email;
-                    user.ConfirmedEmail = false;
-                    user.Ip = GetClientIp();
 
-                    db.Users.InsertOnSubmit(user);
-                    db.SubmitChanges();
-
-
-
-                    MailMessage m = new System.Net.Mail.MailMessage(
-                            new MailAddress("omar_besiktas@hotmail.com", "Web Registration"),
-                            new MailAddress(user.Email));
-                    m.Subject = "Email Doğrulama";
-                    m.Body = string.Format("Sevgili {0}<BR/>Kaydınız için Teşekkür Ederiz, Kaydınızı Tamamlamak için Lütfen Aşağıdaki Linki Tıklayınız: <a href=\"{1}\" title=\"Kullanıcı EPosta Onaylama\">{1}</a>", user.UserName, Url.Action("ConfirmEmail", "Account", new { Token = user.UserName, Email = user.Email }, Request.Url.Scheme));
-                    m.IsBodyHtml = true;
-
-                    using (var smtp = new SmtpClient())
+                    if (IsExistEmail == false)
                     {
-                        var credential = new NetworkCredential
+                        User user = new Models.User();
+                        user.UserName = model.UserName;
+                        user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(model.Password, "md5");
+                        user.CreatedDate = DateTime.Now;
+                        user.Status = true;
+                        user.Email = model.Email;
+                        user.ConfirmedEmail = false;
+                        user.Ip = GetClientIp();
+
+                        db.Users.InsertOnSubmit(user);
+                        db.SubmitChanges();
+
+
+
+                        MailMessage m = new MailMessage(
+                                new MailAddress("omar_besiktas@hotmail.com", "Web Registration"),
+                                new MailAddress(user.Email));
+                        m.Subject = "Email Doğrulama";
+                        m.Body = string.Format("Sevgili {0}<BR/>Kaydınız için Teşekkür Ederiz, Kaydınızı Tamamlamak için Lütfen Aşağıdaki Linki Tıklayınız: <a href=\"{1}\" title=\"Kullanıcı EPosta Onaylama\">{1}</a>", user.UserName, Url.Action("ConfirmEmail", "Account", new { Token = user.UserName, Email = user.Email }, Request.Url.Scheme));
+                        m.IsBodyHtml = true;
+
+                        using (var smtp = new SmtpClient())
                         {
-                            UserName = "omar_besiktas@hotmail.com",
-                            Password = "'ail'-5i55u3r-"
-                        };
-                        smtp.Credentials = credential;
-                        smtp.Host = "smtp.live.com";
-                        smtp.Port = 587;
-                        smtp.EnableSsl = true;
-                        smtp.Send(m);
+                            var credential = new NetworkCredential
+                            {
+                                UserName = "omar_besiktas@hotmail.com",
+                                Password = "'ail'-5i55u3r-"
+                            };
+                            smtp.Credentials = credential;
+                            smtp.Host = "smtp.live.com";
+                            smtp.Port = 587;
+                            smtp.EnableSsl = true;
+                            smtp.Send(m);
+                        }
+
+
+                        return RedirectToAction("Confirm", "Account", new { Email = user.Email });
                     }
-
-
-                    return RedirectToAction("Confirm", "Account", new { Email = user.Email });
+                    else
+                    {
+                        return RedirectToAction("ResetPassword", "Account", new { ExistedUser = true });
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError("","Lütfen Farklı Bir Kullanıcı Adı Belirleyiniz");
+                    ModelState.AddModelError("", "Lütfen Farklı Bir Kullanıcı Adı Belirleyiniz");
                     return View(model);
                 }
             }
@@ -208,8 +225,12 @@ namespace apcurs.Controllers
 
         }
 
-        public ActionResult ResetPassword()
+        public ActionResult ResetPassword(bool ExistedUser)
         {
+            if (ExistedUser == true)
+            {
+                ViewBag.ExistedUser = true;
+            }
 
             return View();
         }
@@ -217,69 +238,93 @@ namespace apcurs.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string email)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    MembershipUser user;
-            //    using (var context = new UsersContext())
-            //    {
-            //        var foundUserName = (from u in context.UserProfiles
-            //                             where u.Email == model.Email
-            //                             select u.UserName).FirstOrDefault();
-            //        if (foundUserName != null)
-            //        {
-            //            user = Membership.GetUser(foundUserName.ToString());
-            //        }
-            //        else
-            //        {
-            //            user = null;
-            //        }
-            //    }
-            //    if (user != null)
-            //    {
-            //        // Generae password token that will be used in the email link to authenticate user
-            //        var token = WebSecurity.GeneratePasswordResetToken(user.UserName);
-            //        // Generate the html link sent via email
-            //        string resetLink = "<a href='"
-            //           + Url.Action("ResetPassword", "Account", new { rt = token }, "http")
-            //           + "'>Reset Password Link</a>";
+            User model = new Models.User();
+            if (ModelState.IsValid)
+            {
+                model = db.Users.Where(a => a.Email == email).FirstOrDefault();
+                string resetLink = Url.Action("LostPassword", "Account", new { rt = model.UserName }, Request.Url.Scheme);
 
-            //        // Email stuff
-            //        string subject = "Reset your password for asdf.com";
-            //        string body = "You link: " + resetLink;
-            //        string from = "donotreply@asdf.com";
+                string subject = "Parola Sıfırla";
+                string body = "Sıfırlama Linki: " + resetLink;
+                MailMessage message = new MailMessage(
+              new MailAddress("omar_besiktas@hotmail.com", "Parola Sıfırlama"),
+              new MailAddress(model.Email));
 
-            //        MailMessage message = new MailMessage(from, model.Email);
-            //        message.Subject = subject;
-            //        message.Body = body;
-            //        SmtpClient client = new SmtpClient();
+                message.Subject = subject;
+                message.Body = body;
 
-            //        // Attempt to send the email
-            //        try
-            //        {
-            //            client.Send(message);
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            ModelState.AddModelError("", "Issue sending email: " + e.Message);
-            //        }
-            //    }
-            //    else // Email not found
-            //    {
-            //        /* Note: You may not want to provide the following information
-            //        * since it gives an intruder information as to whether a
-            //        * certain email address is registered with this website or not.
-            //        * If you're really concerned about privacy, you may want to
-            //        * forward to the same "Success" page regardless whether an
-            //        * user was found or not. This is only for illustration purposes.
-            //        */
-            //        ModelState.AddModelError("", "No user found by that email.");
-            //    }
-            //}
+                using (var smtp = new SmtpClient())
+                {
+                    try
+                    {
+                        var credential = new NetworkCredential
+                        {
+                            UserName = "omar_besiktas@hotmail.com",
+                            Password = "'ail'-5i55u3r-"
+                        };
+                        smtp.Credentials = credential;
+                        smtp.Host = "smtp.live.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        smtp.Send(message);
+                    }
+                    catch (Exception e)
+                    {
+                        ModelState.AddModelError("", "Email gönderirken Hata: " + e.Message);
+                    }
+                }
 
-      
-            return View();
-
+            }
+            return RedirectToAction("RecoveryMailConfirm", new { Email = model.Email });
         }
+
+        [AllowAnonymous]
+        public ActionResult RecoveryMailConfirm(string Email)
+        {
+            ViewBag.Email = Email;
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult LostPassword(string rt)
+        {
+            LostPasswordModel model = new LostPasswordModel();
+            model.ReturnToken = rt;
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult LostPassword(LostPasswordModel model)
+        {
+            bool tr = false;
+            if (ModelState.IsValid)
+            {
+
+                User user = db.Users.Where(a => a.UserName == model.ReturnToken).FirstOrDefault();
+
+                user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(model.Password, "md5");
+                UpdateModel(user);
+                db.SubmitChanges();
+                tr = true;
+
+                if (tr == true)
+                {
+                    ViewBag.Message = "Şifreniz Başarıyla Değiştirildi.Yeni Şifrenizle Giriş Yapabilirsiniz.";
+                }
+
+                else
+                {
+                    ViewBag.Message = "Parola Sıfırlamada Hata Oluştu";
+                }
+            }
+            return View(model);
+        }
+
+
+
+
+
         ////
         //// POST: /Account/Disassociate
         //[HttpPost]

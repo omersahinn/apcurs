@@ -8,37 +8,23 @@
 <link href="~/Content/TopMenu.css" rel="stylesheet" />
 <link href="~/Content/main.css" rel="stylesheet" />
 
-<style>
-    .search {
-        width: 100px;
-        -webkit-transition: all .5s ease;
-        -moz-transition: all .5s ease;
-        transition: all .5s ease;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-        background-image: url(~/icons/search_icon.png);
-    }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        .search:focus {
-            width: 200px;
-        }
-
-   
-</style>
-
-<div class="menuextras" style="width:1300px">
+<div class="menuextras" style="width:1450px;float:left;">
 
     <div class="extras">
         <ul>
-            <li style="font-size:13px"><a href="@Url.Action("Login","Account")">Giriş Yap</a></li>
-            <li style="font-size:13px"><a href="@Url.Action("UserRegister","Account")">Kaydol</a></li>
+            
+
+            <li style="font-size:13px;padding:0"><input type="submit" class="btn-default" value="Giriş Yap" onclick="location.href='@Url.Action("Login","Account")'" /></li>
+            <li style="font-size:13px;padding:0"><input type="submit" class="btn-default" value="Kayıt Ol" onclick="location.href='@Url.Action("UserRegister","Account")'" /></li>
         </ul>
     </div>
     <div class="extras">
-        <ul style="float:left;margin-left:150px">
-            <li><a href="page-login.html">Ana Sayfa ></a></li>
+        <ul style="float:left;margin-left:60px">
+            <li><a href="page-login.html">Ana Sayfa </a>>></li>
             <li style="padding:0"><a href="page-login.html">Blog</a></li>
 
         </ul>
@@ -48,109 +34,118 @@
 
 </div>
 
-<nav id="mainmenu" class="mainmenu" style="width:1300px;">
+<nav id="mainmenu" class="mainmenu" style="width:1500px;">
 
     <ul>
-        <li class="logo-wrapper"><a href="index.html"><span style="font-size:30px; color:black;">ApCurs</span></a></li>
-
-
-        <li class="dropdown">
-            <a href="#" tabindex="-1" class="clearfix">
-                <span class="tech">Teknolojiler </span><i class="fa fa-angle-down" aria-hidden="true"></i>
-
-            </a>
-
-            <ul class="dropdown-content">
-
-                <div class="row" style="margin:0 10px 0 10px">
-
-
-
-                    <div class="pricing-plan">
-                        <a href="#">
-                            <img src="http://via.placeholder.com/150x100" />
-                        </a>
-                    </div>
-
-
-                    <div class="pricing-plan">
-                        <a href="#">
-                            <img src="http://via.placeholder.com/150x100" />
-                        </a>
-                    </div>
-
-
-
-                    <div class="pricing-plan">
-                        <a href="#">
-                            <img src="http://via.placeholder.com/150x100" />
-                        </a>
-                    </div>
-
-
-                    <div class="pricing-plan">
-                        <a href="#">
-                            <img src="http://via.placeholder.com/150x100" />
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row" style="margin:0 10px 0 10px">
-
-                    <div class="pricing-plan">
-                        <a href="#">
-                            <img src="http://via.placeholder.com/150x100" />
-                        </a>
-                    </div>
-
-
-                    <div class="pricing-plan">
-                        <a href="#">
-                            <img src="http://via.placeholder.com/150x100" />
-                        </a>
-                    </div>
-
-
-                    <div class="pricing-plan">
-                        <a href="#">
-                            <img src="http://via.placeholder.com/150x100" />
-                        </a>
-                    </div>
-
-
-                    <div class="pricing-plan">
-                        <a href="#">
-                            <img src="http://via.placeholder.com/150x100" />
-                        </a>
-                    </div>
-                </div>
-            </ul>
-        </li>
-
-
-        <li>
-            <a href="index.html">Sorular</a>
-        </li>
-        <li>
-            <a href="credits.html">Makaleler</a>
-        </li>
-
-        <li class="has-submenu">
-            <a href="#">Tartışma</a>
-
-        </li>
-        <li>
-            <a href="credits.html">Etkinlik</a>
-        </li>
-        <li>
-            <a href="features.html">Uzman</a>
-        </li>
+        <li class="logo-wrapper"><a href="@Url.Action("Index","Home")"><img src="~/img/logo.jpg" height="75" width="198"   /></a></li>
 
         <li style="margin-left:20px;">
-            <form>
-                <input class="search" type="text" name="search" placeholder="Ara..">
-            </form>
+            <div id="search5back">
+
+                <form method="get" action="/search" id="searchbox5">
+                    <input id="search5" name="q" type="text" size="40" placeholder=" Ara..." />
+                </form>
+
+            </div>
+
+
         </li>
+
+
+            <li class="dropdown">
+                <a href="#" tabindex="-1" class="clearfix">
+                    <span class="tech">Kategoriler </span><i class="fa fa-angle-down" aria-hidden="true"></i>
+
+                </a>
+
+                <ul class="dropdown-content">
+
+                    <div class="row" style="margin:0 10px 0 10px">
+
+
+
+                        <div class="pricing-plan" style="padding:0">
+                            <a href="#" style="padding:0">
+                                <img src="http://via.placeholder.com/200x200" />
+                            </a>
+                        </div>
+
+
+                        <div class="pricing-plan" style="padding:0">
+                            <a href="#" style="padding:0">
+                                <img src="http://via.placeholder.com/200x200" />
+                            </a>
+                        </div>
+
+
+
+                        <div class="pricing-plan" style="padding:0">
+                            <a href="#" style="padding:0">
+                                <img src="http://via.placeholder.com/200x200" />
+                            </a>
+                        </div>
+
+
+                        <div class="pricing-plan" style="padding:0">
+                            <a href="#" style="padding:0">
+                                <img src="http://via.placeholder.com/200x200" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin:0 10px 0 10px">
+
+                        <div class="pricing-plan" style="padding:0">
+                            <a href="#" style="padding:0">
+                                <img src="http://via.placeholder.com/200x200" />
+                            </a>
+                        </div>
+
+
+                        <div class="pricing-plan" style="padding:0">
+                            <a href="#" style="padding:0">
+                                <img src="http://via.placeholder.com/200x200" />
+                            </a>
+                        </div>
+
+
+                        <div class="pricing-plan" style="padding:0">
+                            <a href="#" style="padding:0">
+                                <img src="http://via.placeholder.com/200x200" />
+                            </a>
+                        </div>
+
+
+                        <div class="pricing-plan" style="padding:0">
+                            <a href="#" style="padding:0">
+                                <img src="http://via.placeholder.com/200x200" />
+                            </a>
+                        </div>
+                    </div>
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="@Url.Action("Index","Questions")">Sorular</a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("ArticleIndex","Article")">Makaleler</a>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">Tartışma</a>
+
+            </li>
+            <li>
+                <a href="credits.html">Etkinlik</a>
+            </li>
+            <li>
+                <a href="features.html">Uzman</a>
+            </li>
+    
+     
          
         <li class="dropdown" style="float:right;">
             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
@@ -174,10 +169,3 @@
     </ul>
 
 </nav>
-
-
-
-
-
-<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

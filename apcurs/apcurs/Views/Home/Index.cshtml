@@ -4,49 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/home.css" rel="stylesheet" />
+@*<link href="~/Content/home.css" rel="stylesheet" />*@
 <link href="~/Content/question.css" rel="stylesheet" />
 <link href="~/Content/menu.css" rel="stylesheet" />
 <link href="~/Content/main.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-<div class="homepage-slider" style="height:300px">
+<div class="homepage-slider" style="height:405px;border-bottom:4px solid #2623be;width:100%">
     <div id="sequence">
-        <ul class="sequence-canvas">
-
-            <li class="bg4">
-                <!-- Slide Title -->
-                <h2 class="title">Responsive</h2>
-                <!-- Slide Text -->
-                <h3 class="subtitle">It looks great on desktops, laptops, tablets and smartphones</h3>
-                <!-- Slide Image -->
-                <img class="slide-img" src="~/img/slide1.png" alt="Slide 1" />
-            </li>
-            <li class="bg3 animate-in" style="display: list-item; opacity: 1; z-index: 3;">
-                <!-- Slide Title -->
-                <h2 class="title" style="">Color Schemes</h2>
-                <!-- Slide Text -->
-                <h3 class="subtitle" style="">Comes with 5 color schemes and it's easy to make your own!</h3>
-                <!-- Slide Image -->
-                <img class="slide-img" src="~/img/slide2.png" alt="Slide 2" style="">
-            </li>
-            <li class="bg1 animate-in" style="display: list-item; opacity: 1; z-index: 3;">
-                <!-- Slide Title -->
-                <h2 class="title" style="">Feature Rich</h2>
-                <!-- Slide Text -->
-                <h3 class="subtitle" style="">Huge amount of components and over 30 sample pages!</h3>
-                <!-- Slide Image -->
-                <img class="slide-img" src="~/img/slide3.png" alt="Slide 3" style="">
-            </li>
-         
-        </ul>
-        <div class="sequence-pagination-wrapper">
-            <ul class="sequence-pagination">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
-        </div>
+        <img src="~/img/anakapak.jpg" width="10000" height="400" />
+      
     </div>
 </div>
 
@@ -55,30 +22,19 @@
     <div class="tab-content" id="myTabContent">
 
         <div class="home__about">
-
-
-
             <div class="row" style="margin-left:160px;margin-top:30px;width:1300px">
                 <div class="col-md-8">
-
                     <div class="card">
-
-
                         <ul class="nav nav-tabs" style="width:100%;">
                             <li class="active"><a href="#home" data-toggle="tab">Son Sorular</a></li>
                             <li><a href="#profile" data-toggle="tab">Cevaplanmamış Sorular</a></li>
                             <li> <a href="#profile1" data-toggle="tab">En Çok Görüntülenen Sorular </a></li>
-
                         </ul>
-
                         <div class="tab-content" id="myTabContent">
-
                             <div class="tab-pane fade active in" id="home">
-
                                 @foreach (var item in Model.lastQuestions)
                                 {
-
-                                    <div class="question-summary narrow col-sm-2">
+                                    <div class="question-summary narrow col-sm-2" style="border-bottom:1px inset">
                                         <div class="cp">
                                             <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
                                             <div class="status unanswered" style="margin:0;">
@@ -86,7 +42,6 @@
                                                 <div>oylama</div>
                                             </div>
                                             <div class="status unanswered" style="margin:0;">
-
                                                 <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
                                                 <div>cevap</div>
                                             </div>
@@ -96,32 +51,20 @@
                                             </div>
                                         </div>
                                         <div class="image display_none">
-
                                             <div class="summary" style="width:550px;">
-
                                                 <h3 style="margin-top:30px;padding:0;margin-left:5px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
-
                                                 <div class="started" style="float:left;margin-left:23px">
-
                                                     <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                              
+                                    </div>                              
                                 }
-
-
                             </div>
-
                             <div class="tab-pane fade" id="profile">
-
                                 @foreach (var item in Model.notAnsweredQuestion)
                                 {
-
-
-                                    @*<div class="pricing-plan service-wrapper-row" style="width:835px;height:120px;margin-top:5px;margin-bottom:0;">*@
-                                    <div class="question-summary narrow">
+                                    <div class="question-summary narrow" style="border-bottom:1px inset">
                                         <div class="cp">
                                             <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
                                             <div class="status unanswered" style="margin:0;">
@@ -165,7 +108,7 @@
 
 
                                  
-                                    <div class="question-summary narrow">
+                                    <div class="question-summary narrow" style="border-bottom:1px inset">
                                         <div class="cp">
                                             <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
                                             <div class="status unanswered" style="margin:0;">
@@ -234,6 +177,29 @@
                                     <a href="#">Dünyanın En Tecrübeli 8 Stoperi ve Oynadıkları Kulüpler</a>
 
                                 </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 visible-lg" style="margin-top:40px;float:right;">
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Son Makaleler</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav">
+                                @foreach (var item in Model.lastArticles)
+                                {
+                                    <li>
+                                        <a href="#">@item.shortTitle</a>
+                                        <hr style="margin-top:0;margin-bottom:0" />
+                                    </li>
+                                }
+                             
+                                
                             </ul>
                         </div>
                     </div>

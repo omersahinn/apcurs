@@ -101,7 +101,6 @@ namespace apcurs.Controllers
             var temp2 = (from q in db.Articles.ToList()
                          select new ArticleModel
                          {
-
                              id = q.id,
                              user = q.User,
                              subCategory = q.SubCategory,
@@ -113,21 +112,17 @@ namespace apcurs.Controllers
                              shortTitle = q.ShortTitle,      
                              articlePicture=q.ArticlePicture
                          }).ToList();
-
             foreach (var item2 in temp2)
             {
                 item2.comment = db.ArticleComments.Where(a => a.Articleid == item2.id).ToList();
             }
-
-
             var Lastquestion = temp.OrderByDescending(a => a.createdDate).Take(20);        
             var NotAnsweredQuestion =temp.Where(c=>c.answers.Count==0).OrderByDescending(a => a.voteCount).Take(20);
             var Viewedanswer = temp.OrderByDescending(a => a.viewCount).Take(20);
 
-            var Lastarticle = temp2.OrderByDescending(a => a.createdDate).Take(20);
+            var Lastarticle = temp2.OrderByDescending(a => a.createdDate).Take(10);
             var Likedarticle = temp2.OrderByDescending(a => a.likeCount).Take(20);
             var Viewedarticle = temp2.OrderByDescending(a => a.viewCount).Take(20);
-
 
             model.lastQuestions = Lastquestion;
             model.notAnsweredQuestion = NotAnsweredQuestion;
@@ -136,11 +131,8 @@ namespace apcurs.Controllers
             model.lastArticles = Lastarticle;
             model.mostLikedArticles = Likedarticle;
             model.mostViewedArticles = Viewedarticle;
-            
 
             return View(model);
         }
-
-       
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace apcurs.Models
         public string UserName { get; set; }
 
 
-        [Required(ErrorMessage ="Bu Alanı Doldurmak Zorunlu")]
+        [Required(ErrorMessage = "Bu Alanı Doldurmak Zorunlu")]
         [EmailAddress]
         [Display(Name = "E-mail")]
         public string Email { get; set; }

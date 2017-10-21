@@ -1,5 +1,4 @@
 ﻿@model apcurs.Models.LoginViewModel
-
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,32 +6,32 @@
 
 
 
-    <div class="section section-breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Apcurs Giriş</h1>
-                </div>
+<div class="section section-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Apcurs Giriş</h1>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5">
-                    <div class="basic-login">
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="basic-login">
 
 
-                        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2", @style = "width:150px" })
-                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                            </div>
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2", @style = "width:150px" })
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -46,29 +45,29 @@
                                     @Html.CheckBoxFor(m => m.RememberMe)
                                     @Html.LabelFor(m => m.RememberMe)
                                 </div>
-                                 <a href="@Url.Action("ResetPassword","Account")" class="forgot-password">Şifremi Unuttum</a>
-                            
+                                <a href="@Url.Action("ResetPassword","Account",new {ExistedUser=false})" class="forgot-password">Şifremi Unuttum</a>
+
                                 <button type="submit" class="btn pull-right">Giriş</button>
                                 <div class="clearfix"></div>
                             </div>
 
 
-                        }
+                    }
 
 
-                    </div>
                 </div>
-                <div class="col-sm-7 social-login">
-                    <p>Facebook veya Twitter Hesabın ile Giriş Yap </p>
-                    <div class="social-login-buttons">
-                        <a href="#" class="btn-facebook-login">Facebook ile Giriş</a>
-                        <a href="#" class="btn-twitter-login">Twitter ile Giriş</a>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="not-member">
-                        <p>Üye Değil misin? <a href="@Url.Action("UserRegister","Account")">Burdan Kaydol</a></p>
-                    </div>
+            </div>
+            <div class="col-sm-7 social-login">
+                <p>Facebook veya Twitter Hesabın ile Giriş Yap </p>
+                <div class="social-login-buttons">
+                    <a href="#" class="btn-facebook-login">Facebook ile Giriş</a>
+                    <a href="#" class="btn-twitter-login">Twitter ile Giriş</a>
+                </div>
+                <div class="clearfix"></div>
+                <div class="not-member">
+                    <p>Üye Değil misin? <a href="@Url.Action("UserRegister","Account")">Burdan Kaydol</a></p>
                 </div>
             </div>
         </div>
     </div>
+</div>
