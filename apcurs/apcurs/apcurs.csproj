@@ -130,33 +130,15 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\apcurs.css" />
     <Content Include="Content\leaflet.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\menu.css" />
-    <Content Include="Content\question.css" />
+    <Content Include="Content\QuestionList.css" />
     <Content Include="Content\TopMenu.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\anakapak.jpg" />
-    <Content Include="img\logo.png" />
-    <Content Include="img\slide1.png" />
-    <Content Include="img\slide2.png" />
-    <Content Include="img\slide3.png" />
-    <Content Include="img\slider-bg1.jpg" />
-    <Content Include="img\slider-bg10.jpg" />
-    <Content Include="img\slider-bg11.jpg" />
-    <Content Include="img\slider-bg12.jpg" />
-    <Content Include="img\slider-bg13.jpg" />
-    <Content Include="img\slider-bg14.jpg" />
-    <Content Include="img\slider-bg2.jpg" />
-    <Content Include="img\slider-bg3.jpg" />
-    <Content Include="img\slider-bg4.jpg" />
-    <Content Include="img\slider-bg5.jpg" />
-    <Content Include="img\slider-bg6.jpg" />
-    <Content Include="img\slider-bg7.jpg" />
-    <Content Include="img\slider-bg8.jpg" />
-    <Content Include="img\slider-bg9.jpg" />
     <Content Include="Scripts\ace-elements.min.js" />
     <Content Include="Scripts\ace.min.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -201,6 +183,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Db.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\LastAnswerModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\LostPasswordModel.cs" />
     <Compile Include="Models\QuestionAndArticleModel.cs" />
@@ -212,7 +195,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\TopMenu.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\UserRegister.cshtml" />
@@ -220,10 +202,11 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Questions\QuestionIndex.cshtml" />
     <Content Include="Views\Article\ArticleIndex.cshtml" />
     <Content Include="Views\Account\LostPassword.cshtml" />
     <Content Include="Views\Account\RecoveryMailConfirm.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

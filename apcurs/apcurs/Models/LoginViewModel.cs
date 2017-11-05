@@ -9,7 +9,7 @@ namespace apcurs.Models
     public class LoginViewModel
     {
         [Required(ErrorMessage = "Bu Alanı Doldurmak Zorunlu")]
-        [Display(Name = "Kullanıcı Adı")]
+        [Display(Name = "Kullanıcı Adı veya EMail")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Bu Alanı Doldurmak Zorunlu")]

@@ -88,6 +88,7 @@ namespace apcurs.Controllers
                             viewCount = q.ViewCount,
                             voteCount = q.VoteCount,
                             shortTitle = q.ShortTitle,
+
                         }).ToList();
 
 
@@ -116,17 +117,23 @@ namespace apcurs.Controllers
             {
                 item2.comment = db.ArticleComments.Where(a => a.Articleid == item2.id).ToList();
             }
+
+
             var Lastquestion = temp.OrderByDescending(a => a.createdDate).Take(20);        
-            var NotAnsweredQuestion =temp.Where(c=>c.answers.Count==0).OrderByDescending(a => a.voteCount).Take(20);
+            var NotAnsweredQuestion =temp.Where(c=>c.answers.Count==0).OrderByDescending(a => a.createdDate).Take(20);
             var Viewedanswer = temp.OrderByDescending(a => a.viewCount).Take(20);
+            var answeredQuestion = temp.OrderByDescending(a => a.answers.Count()).Take(20);
 
             var Lastarticle = temp2.OrderByDescending(a => a.createdDate).Take(10);
             var Likedarticle = temp2.OrderByDescending(a => a.likeCount).Take(20);
             var Viewedarticle = temp2.OrderByDescending(a => a.viewCount).Take(20);
 
+
+
             model.lastQuestions = Lastquestion;
             model.notAnsweredQuestion = NotAnsweredQuestion;
             model.mostViewedQuestion = Viewedanswer;
+            model.mostAnsweredQuestion = answeredQuestion;
 
             model.lastArticles = Lastarticle;
             model.mostLikedArticles = Likedarticle;

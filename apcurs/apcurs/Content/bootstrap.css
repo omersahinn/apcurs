@@ -3812,7 +3812,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .nav > li {
   position: relative;
-  display: inline-grid;
+  display: block;
 }
 
 .nav > li > a {

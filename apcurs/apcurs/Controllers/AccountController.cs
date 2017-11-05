@@ -62,12 +62,15 @@ namespace apcurs.Controllers
             }
         
             var encryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(model.Password, "md5");
-            var user = db.Users.Where(a => a.UserName == model.UserName || a.Email==model.UserName && a.Password == encryptedPassword).FirstOrDefault();
-            if (user != null)
+
+            var user= db.Users.Where(a => a.UserName == model.UserName || a.Email==model.UserName).FirstOrDefault();
+
+            if (user.Password==encryptedPassword)
             {
                 if (user.ConfirmedEmail == true)
                 {
                     Session["user"] = user;
+                    Session["userName"] = user.UserName;
                     return RedirectToAction("Loggedin");
                 }
                 else
@@ -238,10 +241,18 @@ namespace apcurs.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string email)
         {
-            User model = new Models.User();
-            if (ModelState.IsValid)
+           
+            if (!ModelState.IsValid)
             {
-                model = db.Users.Where(a => a.Email == email).FirstOrDefault();
+                return View();
+            }
+            User model = new Models.User();
+            model = db.Users.Where(a => a.Email == email).FirstOrDefault();
+
+
+            if (model!=null)
+            {
+
                 string resetLink = Url.Action("LostPassword", "Account", new { rt = model.UserName }, Request.Url.Scheme);
 
                 string subject = "Parola Sıfırla";
@@ -274,8 +285,14 @@ namespace apcurs.Controllers
                     }
                 }
 
+
+                return RedirectToAction("RecoveryMailConfirm", new { Email = model.Email }); 
             }
-            return RedirectToAction("RecoveryMailConfirm", new { Email = model.Email });
+            else
+            {
+                ModelState.AddModelError("", "Girdiğiniz Eposta Sistemde Kayıtlı Değil Lütfen Kayıt Olunuz.");
+                return View();
+            }
         }
 
         [AllowAnonymous]
@@ -303,8 +320,8 @@ namespace apcurs.Controllers
 
                 User user = db.Users.Where(a => a.UserName == model.ReturnToken).FirstOrDefault();
 
-                user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(model.Password, "md5");
-                UpdateModel(user);
+                user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(model.Password, "md5");               
+                UpdateModel(user.Password);
                 db.SubmitChanges();
                 tr = true;
 
@@ -318,7 +335,7 @@ namespace apcurs.Controllers
                     ViewBag.Message = "Parola Sıfırlamada Hata Oluştu";
                 }
             }
-            return View(model);
+            return View();
         }
 
 

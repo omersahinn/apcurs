@@ -1,6 +1,9 @@
 /*--------------------------------------------------------------------------
 	General Style
 --------------------------------------------------------------------------*/
+.accountRow{
+    margin-left:50px;
+}
     body {
         background: url(../img/page-background.png);
     }
@@ -123,6 +126,7 @@
 +	Services Style
 --------------------------------------------------------------------------*/
     /* Multicolumn */
+
     .service-wrapper {
         background: #FFF;
         margin: 20px 10px;

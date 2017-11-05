@@ -1,227 +1,122 @@
 ﻿@model apcurs.Models.QuestionAndArticleModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<link href="~/Content/home.css" rel="stylesheet" />*@
-<link href="~/Content/question.css" rel="stylesheet" />
-<link href="~/Content/menu.css" rel="stylesheet" />
-<link href="~/Content/main.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/QuestionList.css" rel="stylesheet" />
 
-<div class="homepage-slider" style="height:405px;border-bottom:4px solid #2623be;width:100%">
-    <div id="sequence">
-        <img src="~/img/anakapak.jpg" width="10000" height="400" />
-      
-    </div>
-</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+@if (Session["user"] == null)
+{
+    <img src="~/img/anakapak.jpg" style=" max-width: 100%;height: auto;" />
+}
+<div class="row" style="width:100%">
+    <div class="col-md-12" style="padding:0">
 
-<div class="section" style="padding-bottom:1900px;">
-    <div class="tab-content" id="myTabContent">
+        <div id="content" style="margin-left:100px;">
+            <ul class="nav nav-tabs" id="tab">
+                <li class="active"><a href="#lastQ" data-toggle="tab">Son Sorular</a></li>
+                <li><a href="#popularQ" data-toggle="tab">Popüler Sorular</a></li>
+                <li> <a href="#unansweredQ" data-toggle="tab">Cevapsız Sorular </a></li>
+                <li> <a href="#lastA" data-toggle="tab">En Çok Cevaplananlar </a></li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade active in" id="lastQ">
+                    @foreach (var item in Model.lastQuestions)
+                    {
+                        <div class="question_list">
+                            <span class="answers_total" style="margin-right:2px;">
+                                <a href="#">@item.answers.Count()</a>   Cevap
+                            </span>
+                            <span class="answers_total" style="margin-right:25px;margin-left:0">
+                                <a href="#">@item.voteCount </a> Oylama
+                            </span>
 
-        <div class="home__about">
-            <div class="row" style="margin-left:160px;margin-top:30px;width:1300px">
-                <div class="col-md-8">
-                    <div class="card">
-                        <ul class="nav nav-tabs" style="width:100%;">
-                            <li class="active"><a href="#home" data-toggle="tab">Son Sorular</a></li>
-                            <li><a href="#profile" data-toggle="tab">Cevaplanmamış Sorular</a></li>
-                            <li> <a href="#profile1" data-toggle="tab">En Çok Görüntülenen Sorular </a></li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active in" id="home">
-                                @foreach (var item in Model.lastQuestions)
-                                {
-                                    <div class="question-summary narrow col-sm-2" style="border-bottom:1px inset">
-                                        <div class="cp">
-                                            <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
-                                            <div class="status unanswered" style="margin:0;">
-                                                <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
-                                                <div>oylama</div>
-                                            </div>
-                                            <div class="status unanswered" style="margin:0;">
-                                                <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
-                                                <div>cevap</div>
-                                            </div>
-                                            <div class="views" style="margin:0;">
-                                                <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                <div>görüntüleme</div>
-                                            </div>
-                                        </div>
-                                        <div class="image display_none">
-                                            <div class="summary" style="width:550px;">
-                                                <h3 style="margin-top:30px;padding:0;margin-left:5px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
-                                                <div class="started" style="float:left;margin-left:23px">
-                                                    <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                              
-                                }
-                            </div>
-                            <div class="tab-pane fade" id="profile">
-                                @foreach (var item in Model.notAnsweredQuestion)
-                                {
-                                    <div class="question-summary narrow" style="border-bottom:1px inset">
-                                        <div class="cp">
-                                            <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
-                                            <div class="status unanswered" style="margin:0;">
-                                                <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
-                                                <div>oylama</div>
-                                            </div>
-                                            <div class="status unanswered" style="margin:0;">
-
-                                                <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
-                                                <div>cevap</div>
-                                            </div>
-                                            <div class="views" style="margin:0;">
-                                                <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                <div>görüntüleme</div>
-                                            </div>
-                                        </div>
-                                        <div class="image display_none">
-
-                                            <div class="summary" style="width:550px;">
-
-                                                <h3 style="margin-top:30px;padding:0;margin-left:13px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
-
-                                                <div class="started" style="float:left;margin-left:13px">
-
-                                                    <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        @*</div>*@
-
-                                }
-
-
-                            </div>
-
-                            <div class="tab-pane fade" id="profile1">
-
-                                @foreach (var item in Model.mostViewedQuestion)
-                                {
-
-
-                                 
-                                    <div class="question-summary narrow" style="border-bottom:1px inset">
-                                        <div class="cp">
-                                            <a href="http://www.c-sharpcorner.com/members/rajdip-sarkar6" title="@item.user.UserName"><img width="60" height="60" class="userImage" style="border-radius:100px" alt="@item.user.UserName" src="@item.user.ProfilPicture"></a>
-                                            <div class="status unanswered" style="margin:0;">
-                                                <div class="mini-counts"><span title="@item.voteCount oylama">@item.voteCount</span></div>
-                                                <div>oylama</div>
-                                            </div>
-                                            <div class="status unanswered" style="margin:0;">
-
-                                                <div class="mini-counts"><span title="@item.answers.Count() cevap">@item.answers.Count()</span></div>
-                                                <div>cevap</div>
-                                            </div>
-                                            <div class="views" style="margin:0;">
-                                                <div class="mini-counts"><span title="@item.viewCount görüntüleme">@item.viewCount</span></div>
-                                                <div>görüntüleme</div>
-                                            </div>
-                                        </div>
-                                        <div class="image display_none">
-
-                                            <div class="summary" style="width:550px;">
-
-                                                <h3 style="margin-top:30;padding:0;margin-left:13px;margin-bottom:20px"><a href="" class="question-hyperlink">@item.shortTitle</a></h3>
-
-                                                <div class="started" style="float:left;margin-left:13px">
-
-                                                    <span class="reputation-score" title="itibar " dir="ltr">@item.user.Reputation </span><a href="/users/2597209/user2597209">@item.user.UserName </a><span>tarafından @item.createdDate soruldu</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                              
-                                }
-
-                            </div>
-
+                            <h3> <a href="#" title="Soruyu Gör">@item.shortTitle</a></h3>
+                            <p>
+                                <span class="user"><strong><a href="#" title="@item.user.UserName tarafından soruldu" rel="author">@item.user.UserName</a></strong> </span>
+                                <span class="views"><b>38 </b> Görüntüleme </span>
+                                <span class="pcate">  <a href="#" title="Kategori">@item.category.CategoryName</a> </span>
+                            </p>
 
 
                         </div>
-                    </div>
+                    }
                 </div>
 
-                <div class="col-md-4 visible-lg" style="margin-top:40px;">
+                <div class="tab-pane fade" id="popularQ">
+                    @foreach (var item in Model.mostViewedQuestion)
+                    {
+                        <div class="question_list">
+                            <span class="answers_total" style="margin-right:2px;">
+                                <a href="http://demo.templatic.com/answers/652995651088-2/#commentarea">@item.answers.Count() </a>   Cevap
+                            </span>
+                            <span class="answers_total" style="margin-right:25px;margin-left:0">
+                                <a href="http://demo.templatic.com/answers/652995651088-2/#commentarea">@item.voteCount </a>   Oylama
+                            </span>
 
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Blog</h3>
+                            <h3> <a href="http://demo.templatic.com/answers/652995651088-2/" rel="bookmark" title="Permanent Link to 652995651088">@item.shortTitle</a></h3>
+                            <p>
+                                <span class="user"><strong><a href="http://demo.templatic.com/answers/author/testtt/" title="Posts by testtt" rel="author">@item.user.UserName</a></strong> </span>
+                                <span class="views"><b>38 </b> Görüntüleme </span>
+                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.category.CategoryName</a> </span>
+                            </p>
+
+
                         </div>
-                        <div class="panel-body">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#">Bermuda Şeytan Üçgeni’nde Yaşananların Bilimsel Açıklamaları</a>
-                                    <hr style="margin-top:0;margin-bottom:0" />
-                                </li>
-                                <li>
-                                    <a href="#">Muz Oyma Sanatı</a>
-                                    <hr style="margin-top:0;margin-bottom:0" />
-                                </li>
-                                <li>
-                                    <a href="#">Ali İsmail Korkmaz Ölümünün 4.yılında Anıldı.</a>
-                                    <hr style="margin-top:0;margin-bottom:0" />
-                                </li>
-                                <li>
-                                    <a href="#">Kartal Bebek Kimdir? Neden Twitter’da Gündem Oldu</a>
-                                    <hr style="margin-top:0;margin-bottom:0" />
-                                </li>
-                                <li>
-                                    <a href="#">Dünyanın En Tecrübeli 8 Stoperi ve Oynadıkları Kulüpler</a>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
+                    }
                 </div>
+                <div class="tab-pane fade" id="unansweredQ">
+                    @foreach (var item in Model.notAnsweredQuestion)
+                    {
+                        <div class="question_list">
+                            <span class="answers_total" style="margin-right:2px;">
+                                <a href="http://demo.templatic.com/answers/652995651088-2/#commentarea">@item.answers.Count() </a>   Cevap
+                            </span>
+                            <span class="answers_total" style="margin-right:25px;margin-left:0">
+                                <a href="http://demo.templatic.com/answers/652995651088-2/#commentarea">@item.voteCount </a>   Oylama
+                            </span>
 
-                <div class="col-md-4 visible-lg" style="margin-top:40px;float:right;">
+                            <h3> <a href="http://demo.templatic.com/answers/652995651088-2/" rel="bookmark" title="Permanent Link to 652995651088">@item.shortTitle</a></h3>
+                            <p>
+                                <span class="user"><strong><a href="http://demo.templatic.com/answers/author/testtt/" title="Posts by testtt" rel="author">@item.user.UserName</a></strong> </span>
+                                <span class="views"><b>38 </b> Görüntüleme </span>
+                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.category.CategoryName</a> </span>
+                            </p>
 
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Son Makaleler</h3>
+
                         </div>
-                        <div class="panel-body">
-                            <ul class="nav">
-                                @foreach (var item in Model.lastArticles)
-                                {
-                                    <li>
-                                        <a href="#">@item.shortTitle</a>
-                                        <hr style="margin-top:0;margin-bottom:0" />
-                                    </li>
-                                }
-                             
-                                
-                            </ul>
-                        </div>
-                    </div>
-
+                    }
                 </div>
+                <div class="tab-pane fade" id="lastA">
+                    @foreach (var item in Model.mostAnsweredQuestion)
+                    {
+                        <div class="question_list">
+                            <span class="answers_total" style="margin-right:2px;">
+                                <a href="http://demo.templatic.com/answers/652995651088-2/#commentarea">@item.answers.Count()</a>   Cevap
+                            </span>
+                            <span class="answers_total" style="margin-right:25px;margin-left:0">
+                                <a href="http://demo.templatic.com/answers/652995651088-2/#commentarea">@item.voteCount </a>   Oylama
+                            </span>
 
+                            <h3> <a href="http://demo.templatic.com/answers/652995651088-2/" rel="bookmark" title="Permanent Link to 652995651088">@item.shortTitle</a></h3>
+                            <p>
+                                <span class="user"><strong><a href="http://demo.templatic.com/answers/author/testtt/" title="Posts by testtt" rel="author">@item.user.UserName</a></strong> </span>
+                                <span class="views"><b>38 </b> Görüntüleme </span>
+                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.category.CategoryName</a> </span>
+                            </p>
+
+
+                        </div>
+                    }
+                </div>
             </div>
-
         </div>
 
     </div>
-
 </div>
-
-
-<script src="~/Scripts/app.js"></script>
-<script src="~/Scripts/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery.bxslider.js"></script>
-<script src="~/Scripts/jquery.fitvids.js"></script>
-<script src="~/Scripts/jquery.sequence-min.js"></script>
-<script src="~/Scripts/jquery.sequence.js"></script>
-<script src="~/Scripts/main-menu.js"></script>
-<script src="~/Scripts/template.js"></script>

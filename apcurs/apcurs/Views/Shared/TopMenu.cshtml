@@ -1,171 +1,127 @@
 ﻿
+<link href="~/Content/apcurs.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <header class="main-header">
 
-<link href="~/Content/jquery-ui.custom.min.css" rel="stylesheet" />
-<link href="~/Content/TopMenu.css" rel="stylesheet" />
-<link href="~/Content/main.css" rel="stylesheet" />
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<div class="menuextras" style="width:1450px;float:left;">
-
-    <div class="extras">
-        <ul>
-            
-
-            <li style="font-size:13px;padding:0"><input type="submit" class="btn-default" value="Giriş Yap" onclick="location.href='@Url.Action("Login","Account")'" /></li>
-            <li style="font-size:13px;padding:0"><input type="submit" class="btn-default" value="Kayıt Ol" onclick="location.href='@Url.Action("UserRegister","Account")'" /></li>
-        </ul>
-    </div>
-    <div class="extras">
-        <ul style="float:left;margin-left:60px">
-            <li><a href="page-login.html">Ana Sayfa </a>>></li>
-            <li style="padding:0"><a href="page-login.html">Blog</a></li>
-
-        </ul>
-    </div>
-
-
-
-</div>
-
-<nav id="mainmenu" class="mainmenu" style="width:1500px;">
-
-    <ul>
-        <li class="logo-wrapper"><a href="@Url.Action("Index","Home")"><img src="~/img/logo.jpg" height="75" width="198"   /></a></li>
-
-        <li style="margin-left:20px;">
-            <div id="search5back">
-
-                <form method="get" action="/search" id="searchbox5">
-                    <input id="search5" name="q" type="text" size="40" placeholder=" Ara..." />
-                </form>
-
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <a href="@Url.Action("Index","Home")"><img src="~/img/logo.jpg" width="150" height="50" /></a>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="top:13px">
+                <form method="get" action="/search" id="searchbox5">
+                    <input id="search5" name="q" type="text" size="20" placeholder=" Ara..." />
+                </form>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="top:13px">
+                <nav class="main-nav">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#" tabindex="-1" class="dropdown">Kategoriler</a>
+                            <ul class="dropdown-content">
+
+                                <div class="categoryRow">
+
+                                    <a href="#">
+                                        <img src="http://via.placeholder.com/150x150" />
+                                    </a>
+
+                                    <a href="#">
+                                        <img src="http://via.placeholder.com/150x150" />
+                                    </a>
+
+                                    <a href="#">
+                                        <img src="http://via.placeholder.com/150x150" />
+                                    </a>
+
+                                    <a href="#">
+                                        <img src="http://via.placeholder.com/150x150" />
+                                    </a>
+
+                                </div>
+
+                                <div class="categoryRow">
 
 
-        </li>
+                                    <a href="#">
+                                        <img src="http://via.placeholder.com/150x150" />
+                                    </a>
 
+                                    <a href="#">
+                                        <img src="http://via.placeholder.com/150x150" />
+                                    </a>
 
-            <li class="dropdown">
-                <a href="#" tabindex="-1" class="clearfix">
-                    <span class="tech">Kategoriler </span><i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    <a href="#">
+                                        <img src="http://via.placeholder.com/150x150" />
+                                    </a>
 
-                </a>
+                                    <a href="#">
+                                        <img src="http://via.placeholder.com/150x150" />
+                                    </a>
 
-                <ul class="dropdown-content">
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("QuestionIndex","Questions")">Sorular</a>
+                        </li>
 
-                    <div class="row" style="margin:0 10px 0 10px">
+                        <li>
+                            <a href="@Url.Action("ArticleIndex","Article")">Makaleler</a>
+                        </li>
 
+                        <li>
+                            <a href="#">Tartışma</a>
+                        </li>
+                        <li>
+                            <a href="#">Etkinlik</a>
+                        </li>
 
+                        <li>
 
-                        <div class="pricing-plan" style="padding:0">
-                            <a href="#" style="padding:0">
-                                <img src="http://via.placeholder.com/200x200" />
-                            </a>
-                        </div>
+                            <a href="#">Uzman</a>
+                        </li>
 
+                    </ul>
+                </nav>
+            </div>
+            @if (Session["user"] == null)
+            {
+                <div class="account col-xs-12 col-sm-2 col-md-2 col-lg-2" style="top:13px">
+                    <a class="" href="@Url.Action("Login","Account")">Giriş Yap</a>
+                    <a class="" href="@Url.Action("UserRegister","Account")">Kayıt Ol</a>
 
-                        <div class="pricing-plan" style="padding:0">
-                            <a href="#" style="padding:0">
-                                <img src="http://via.placeholder.com/200x200" />
-                            </a>
-                        </div>
+                </div>
+            }
 
+            @if (Session["user"] != null)
+            {
+                <div class="profilphoto col-xs-12 col-sm-2 col-md-2 col-lg-2" style="top:13px">
+                    <li class="profil-dropdown" style="list-style-type:none;">
+                        <a href="#">
+                            <img class="nav-user-photo" style="border-radius:8px;" src="https://avatars1.githubusercontent.com/u/24634440?s=400&v=4" width="30" height="30">
 
+                            <span class="">
+                                <small>Hoşgeldin,@Session["userName"]</small>
+                            </span>
+                        </a>
 
-                        <div class="pricing-plan" style="padding:0">
-                            <a href="#" style="padding:0">
-                                <img src="http://via.placeholder.com/200x200" />
-                            </a>
-                        </div>
+                        <ul class="profil-content">
+                            <li><a href="page-user.html"><i class="fa fa-user fa-lg"></i> Profilim</a></li>
+                            <li><a href="page-user.html"><i class="fa fa-pencil-square-o"></i> Profilimi Düzenle</a></li>
+                            <li><a href="page-user.html"><i class="fa fa-key"></i> Parola Değiştir</a></li>
+                            <li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Ayarlar</a></li>
+                            <li><a href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Çıkış</a></li>
+                        </ul>
+                    </li>
+                </div>
 
-
-                        <div class="pricing-plan" style="padding:0">
-                            <a href="#" style="padding:0">
-                                <img src="http://via.placeholder.com/200x200" />
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="row" style="margin:0 10px 0 10px">
-
-                        <div class="pricing-plan" style="padding:0">
-                            <a href="#" style="padding:0">
-                                <img src="http://via.placeholder.com/200x200" />
-                            </a>
-                        </div>
-
-
-                        <div class="pricing-plan" style="padding:0">
-                            <a href="#" style="padding:0">
-                                <img src="http://via.placeholder.com/200x200" />
-                            </a>
-                        </div>
-
-
-                        <div class="pricing-plan" style="padding:0">
-                            <a href="#" style="padding:0">
-                                <img src="http://via.placeholder.com/200x200" />
-                            </a>
-                        </div>
-
-
-                        <div class="pricing-plan" style="padding:0">
-                            <a href="#" style="padding:0">
-                                <img src="http://via.placeholder.com/200x200" />
-                            </a>
-                        </div>
-                    </div>
-                </ul>
-            </li>
-
-
-            <li>
-                <a href="@Url.Action("Index","Questions")">Sorular</a>
-            </li>
-
-            <li>
-                <a href="@Url.Action("ArticleIndex","Article")">Makaleler</a>
-            </li>
-
-            <li class="has-submenu">
-                <a href="#">Tartışma</a>
-
-            </li>
-            <li>
-                <a href="credits.html">Etkinlik</a>
-            </li>
-            <li>
-                <a href="features.html">Uzman</a>
-            </li>
-    
-     
-         
-        <li class="dropdown" style="float:right;">
-            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                <img class="nav-user-photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-xZzBpHg1fV7QrhfaKP7-FUpOuV5UPpTl5G7CRY1IR1vb_VhYOg" width="40" height="40">
-              
-                <span class="">
-                    <small>Hoşgeldin,</small>
-                    Jason
-                </span>
-            </a>
+            }
            
-            <ul class="dropdown-content" style="min-height:30px;">
-                <li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Profilimi Düzenle</a></li>
-                <li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Parola Değiştir</a></li>
-                <li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Ayarlar</a></li>
-                <li><a href="page-user.html"><i class="fa fa-user fa-lg"></i> Profilim</a></li>
-                <li><a href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Çıkış</a></li>
-            </ul>
-        </li>
 
-    </ul>
+        </div>
 
-</nav>
+
+    </header>
+
+

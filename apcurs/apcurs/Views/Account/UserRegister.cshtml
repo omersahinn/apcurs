@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/main-green.css" rel="stylesheet" />
-
+<link href="~/Content/leaflet.css" rel="stylesheet" />
 
 <div class="section section-breadcrumbs">
     <div class="containera">
@@ -19,7 +19,7 @@
 
 <div class="section">
     <div class="container">
-        <div class="row">
+        <div class="accountRow">
             <div class="col-sm-5">
                 <div class="basic-login">
                     @using (Html.BeginForm("UserRegister", "Account", FormMethod.Post))

@@ -676,8 +676,8 @@ pre {
 }
 
 .container {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 0px;
+    padding-left: 0px;
     margin-right: auto;
     margin-left: auto
 }
@@ -1176,7 +1176,7 @@ pre {
 
 @media(min-width:1200px) {
     .container {
-        max-width: 1170px
+        max-width: 1600px
     }
 
     .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11 {
@@ -3503,19 +3503,22 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
             margin-right: 2px;
             line-height: 1.428571429;
             border: 1px solid transparent;
-            border-radius: 4px 4px 0 0
+            border-radius: 4px 4px 0 0;
+            color:black;
         }
 
             .nav-tabs > li > a:hover {
-                border-color: #eee #eee #ddd
+                border-color: #eee #eee #ddd;
+                color: #cc2534;
             }
 
         .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
             color: #555;
             cursor: default;
-            background-color: #fff;
+            background-color: white;
             border: 1px solid #ddd;
-            border-bottom-color: transparent
+            border-bottom-color: transparent;
+            border-top: 2px solid #cc2534;
         }
 
     .nav-tabs.nav-justified {
@@ -5749,6 +5752,10 @@ button.close {
 
 .pull-right {
     float: right !important
+}
+
+.pull-left {
+    float: left !important
 }
 
 .hide {

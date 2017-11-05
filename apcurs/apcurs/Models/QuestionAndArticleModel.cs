@@ -12,6 +12,7 @@ namespace apcurs.Models
         public IEnumerable<QuestionModel> lastQuestions { get; set; }
         public IEnumerable<QuestionModel> notAnsweredQuestion { get; set; }
         public IEnumerable<QuestionModel> mostViewedQuestion { get; set; }
+        public IEnumerable<QuestionModel> mostAnsweredQuestion { get; set; }
 
         public IEnumerable<ArticleModel> lastArticles { get; set; }
         public IEnumerable<ArticleModel> mostLikedArticles { get; set; }
