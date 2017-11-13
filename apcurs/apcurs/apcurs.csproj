@@ -128,6 +128,72 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="a\ace-editable.min.js" />
+    <Content Include="a\ace-elements.min.js" />
+    <Content Include="a\ace-extra.min.js" />
+    <Content Include="a\ace.min.js" />
+    <Content Include="a\autosize.min.js" />
+    <Content Include="a\bootbox.js" />
+    <Content Include="a\bootstrap-colorpicker.min.js" />
+    <Content Include="a\bootstrap-datepicker.min.js" />
+    <Content Include="a\bootstrap-datetimepicker.min.js" />
+    <Content Include="a\bootstrap-editable.min.js" />
+    <Content Include="a\bootstrap-markdown.min.js" />
+    <Content Include="a\bootstrap-multiselect.min.js" />
+    <Content Include="a\bootstrap-tag.min.js" />
+    <Content Include="a\bootstrap-timepicker.min.js" />
+    <Content Include="a\bootstrap-wysiwyg.min.js" />
+    <Content Include="a\bootstrap.min.js" />
+    <Content Include="a\buttons.colVis.min.js" />
+    <Content Include="a\buttons.flash.min.js" />
+    <Content Include="a\buttons.html5.min.js" />
+    <Content Include="a\buttons.print.min.js" />
+    <Content Include="a\chosen.jquery.min.js" />
+    <Content Include="a\dataTables.buttons.min.js" />
+    <Content Include="a\dataTables.select.min.js" />
+    <Content Include="a\daterangepicker.min.js" />
+    <Content Include="a\dropzone.min.js" />
+    <Content Include="a\excanvas.min.js" />
+    <Content Include="a\fullcalendar.min.js" />
+    <Content Include="a\grid.locale-en.js" />
+    <Content Include="a\holder.min.js" />
+    <Content Include="a\html5shiv.min.js" />
+    <Content Include="a\jquery-1.11.3.min.js" />
+    <Content Include="a\jquery-2.1.4.min.js" />
+    <Content Include="a\jquery-additional-methods.min.js" />
+    <Content Include="a\jquery-typeahead.js" />
+    <Content Include="a\jquery-ui.custom.min.js" />
+    <Content Include="a\jquery-ui.min.js" />
+    <Content Include="a\jquery.bootstrap-duallistbox.min.js" />
+    <Content Include="a\jquery.colorbox.min.js" />
+    <Content Include="a\jquery.dataTables.bootstrap.min.js" />
+    <Content Include="a\jquery.dataTables.min.js" />
+    <Content Include="a\jquery.easypiechart.min.js" />
+    <Content Include="a\jquery.flot.min.js" />
+    <Content Include="a\jquery.flot.pie.min.js" />
+    <Content Include="a\jquery.flot.resize.min.js" />
+    <Content Include="a\jquery.gritter.min.js" />
+    <Content Include="a\jquery.hotkeys.index.min.js" />
+    <Content Include="a\jquery.inputlimiter.min.js" />
+    <Content Include="a\jquery.jqGrid.min.js" />
+    <Content Include="a\jquery.knob.min.js" />
+    <Content Include="a\jquery.maskedinput.min.js" />
+    <Content Include="a\jquery.mobile.custom.min.js" />
+    <Content Include="a\jquery.nestable.min.js" />
+    <Content Include="a\jquery.raty.min.js" />
+    <Content Include="a\jquery.sparkline.index.min.js" />
+    <Content Include="a\jquery.ui.touch-punch.min.js" />
+    <Content Include="a\jquery.validate.min.js" />
+    <Content Include="a\markdown.min.js" />
+    <Content Include="a\moment.min.js" />
+    <Content Include="a\prettify.min.js" />
+    <Content Include="a\respond.min.js" />
+    <Content Include="a\select2.min.js" />
+    <Content Include="a\spin.js" />
+    <Content Include="a\spinbox.min.js" />
+    <Content Include="a\tree.min.js" />
+    <Content Include="a\wizard.min.js" />
+    <Content Include="Content\ace.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\apcurs.css" />
@@ -174,6 +240,7 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +257,7 @@
     <Compile Include="Models\QuestionModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ResetPasswordModel.cs" />
+    <Compile Include="Models\SubCategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -202,11 +270,12 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Questions\QuestionIndex.cshtml" />
     <Content Include="Views\Article\ArticleIndex.cshtml" />
     <Content Include="Views\Account\LostPassword.cshtml" />
     <Content Include="Views\Account\RecoveryMailConfirm.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\UserIndex.cshtml" />
+    <Content Include="Views\Questions\QuestionIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

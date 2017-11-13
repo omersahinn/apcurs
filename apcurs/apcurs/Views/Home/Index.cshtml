@@ -25,7 +25,7 @@
                 <li> <a href="#unansweredQ" data-toggle="tab">Cevapsız Sorular </a></li>
                 <li> <a href="#lastA" data-toggle="tab">En Çok Cevaplananlar </a></li>
             </ul>
-            <div class="tab-content" id="myTabContent">
+            <div class="tab-content" id="myTabContent"style="width:70%;">
                 <div class="tab-pane fade active in" id="lastQ">
                     @foreach (var item in Model.lastQuestions)
                     {
@@ -41,7 +41,7 @@
                             <p>
                                 <span class="user"><strong><a href="#" title="@item.user.UserName tarafından soruldu" rel="author">@item.user.UserName</a></strong> </span>
                                 <span class="views"><b>38 </b> Görüntüleme </span>
-                                <span class="pcate">  <a href="#" title="Kategori">@item.category.CategoryName</a> </span>
+                                <span class="pcate">  <a href="#" title="Kategori">@item.subCategory.SubCategoryName</a> </span>
                             </p>
 
 
@@ -64,7 +64,7 @@
                             <p>
                                 <span class="user"><strong><a href="http://demo.templatic.com/answers/author/testtt/" title="Posts by testtt" rel="author">@item.user.UserName</a></strong> </span>
                                 <span class="views"><b>38 </b> Görüntüleme </span>
-                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.category.CategoryName</a> </span>
+                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.subCategory.SubCategoryName</a> </span>
                             </p>
 
 
@@ -86,7 +86,7 @@
                             <p>
                                 <span class="user"><strong><a href="http://demo.templatic.com/answers/author/testtt/" title="Posts by testtt" rel="author">@item.user.UserName</a></strong> </span>
                                 <span class="views"><b>38 </b> Görüntüleme </span>
-                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.category.CategoryName</a> </span>
+                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.subCategory.SubCategoryName</a> </span>
                             </p>
 
 
@@ -108,7 +108,7 @@
                             <p>
                                 <span class="user"><strong><a href="http://demo.templatic.com/answers/author/testtt/" title="Posts by testtt" rel="author">@item.user.UserName</a></strong> </span>
                                 <span class="views"><b>38 </b> Görüntüleme </span>
-                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.category.CategoryName</a> </span>
+                                <span class="pcate">  <a href="http://demo.templatic.com/answers/category/uncategorized/" rel="category tag">@item.subCategory.SubCategoryName</a> </span>
                             </p>
 
 
