@@ -83,7 +83,7 @@ namespace apcurs.Controllers
                             subCategory = q.SubCategory,
                             category = q.Category,
                             questionText = q.QuestionText,
-                            createdDate = TimeAgo(q.CreatedDate),
+                            createdDate = q.CreatedDate,
                             isReply = q.IsReply,
                             viewCount = q.ViewCount,
                             voteCount = q.VoteCount,

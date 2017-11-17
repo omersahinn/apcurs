@@ -97,12 +97,12 @@
             @if (Session["user"] != null)
             {
                 <div class="profilphoto col-xs-12 col-sm-2 col-md-2 col-lg-2" style="top:13px">
-                    <li class="profil-dropdown" style="list-style-type:none;">
+                    <li class="profil-dropdown" style="list-style-type:none; float:right;">
                         <a href="@Url.Action("UserIndex","User")">
                             <img class="nav-user-photo" style="border-radius:8px;" src="https://avatars1.githubusercontent.com/u/24634440?s=400&v=4" width="30" height="30">
 
                             <span class="">
-                                <small>Hoşgeldin,@Session["userName"]</small>
+                                <small style="margin-left:10px">Hoşgeldin,@Session["userName"]</small>
                             </span>
                         </a>
 

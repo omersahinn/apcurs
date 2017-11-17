@@ -11,7 +11,7 @@ namespace apcurs.Models
         public User user { get; set; }
         public SubCategory subCategory { get; set; }
         public string questionText { get; set; }
-        public string createdDate { get; set; }
+        public DateTime? createdDate { get; set; }
         public bool isReply { get; set; }
         public Category category { get; set; }
         public int? viewCount { get; set; }

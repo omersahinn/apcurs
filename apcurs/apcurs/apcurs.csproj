@@ -223,6 +223,7 @@
       <DependentUpon>Db.dbml</DependentUpon>
     </None>
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.bxslider.js" />
