@@ -1,9 +1,134 @@
 ﻿@model apcurs.Models.QuestionAndArticleModel
+@using apcurs.Models
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+
+    .widget ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .widget_highest_points ul li {
+        padding-bottom: 15px;
+    }
+
+     .widget ul li {
+        position: relative;
+        font-size: 14px;
+        overflow: hidden;
+        padding-bottom: 10px;
+    }
+
+    .sidebar .author-img {
+        padding: 5px 0;
+        border: 0px solid;
+    }
+
+    .author-img {
+        float: left;
+        display: block;
+        overflow: hidden;
+        width: 71px;
+        height: 71px;
+        position: relative;
+        margin-right: 20px;
+        padding: 2px;
+        border: 1px solid #dedede;
+        -moz-border-radius: 4%;
+        -webkit-border-radius: 4%;
+        border-radius: 4%;
+    }
+
+    .widget ul li h6 {
+        font-size: 14px;
+        line-height: 20px;
+        word-break: break-all;
+    }
+
+    .widget_comments li h6 {
+        overflow: hidden;
+    }
+
+    .widget_highest_points li h6 {
+        margin: 5px 0;
+        font-weight: bold;
+    }
+
+    .widget ul li a, .widget .widget_highest_points.widget_comments ul li a .widget ul li a, .widget .widget_highest_points.widget_comments ul li a {
+        line-height: 18px !important;
+        font-size: 13px !important;
+    }
+
+    .widget ul li a, .widget .widget_highest_points.widget_comments ul li a {
+        font-family: "Open Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: capitalize;
+        color: #191919;
+    }
+
+    .author-img img {
+        display: block;
+        float: left;
+        width: 65px;
+        height: 65px;
+        overflow: hidden;
+        -moz-border-radius: 4%;
+        -webkit-border-radius: 4%;
+        border-radius: 4%;
+    }
+
+
+
+
+    .widget {
+        background-color: #fff;
+        box-shadow: 0 1px 2px #ccc;
+        overflow: hidden;
+        margin-bottom: 50px;
+        position: relative;
+        color: #2f3239;
+        padding: 20px;
+        top: 40px;
+        left: 60px;
+    }
+
+        .widget h3.widget_title {
+            padding: 16px !important;
+            font-size: 15px;
+            font-weight: 400;
+            color: #191919 !important;
+            text-transform: capitalize;
+            border-left: 2px solid #be161e;
+            border-right: 2px solid #be161e;
+            margin-left: -20px !important;
+            margin-right: -20px !important;
+            border-bottom: 1px solid #f3f3f3 !important;
+        }
+
+        .widget ul li {
+            position: relative;
+            font-size: 14px;
+            overflow: hidden;
+            padding-bottom: 10px;
+        }
+
+        .widget ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+
+
+
+
+</style>
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/Content/QuestionList.css" rel="stylesheet" />
@@ -16,7 +141,7 @@
     <img src="~/img/anakapak.jpg" style=" max-width: 100%;height: auto;" />
 }
 <div class="row" style="width:100%">
-    <div class="col-md-12" style="padding:0">
+    <div class="col-md-8" style="padding:0">
 
         <div id="content" style="margin-left:100px;">
             <ul class="nav nav-tabs" id="tab">
@@ -25,7 +150,7 @@
                 <li> <a href="#unansweredQ" data-toggle="tab">Cevapsız Sorular </a></li>
                 <li> <a href="#lastA" data-toggle="tab">En Çok Cevaplananlar </a></li>
             </ul>
-            <div class="tab-content" id="myTabContent"style="width:70%;">
+            <div class="tab-content" id="myTabContent"style="width:100%;">
                 <div class="tab-pane fade active in" id="lastQ">
                     @foreach (var item in Model.lastQuestions)
                     {
@@ -40,7 +165,7 @@
                             <h3> <a href="#" title="Soruyu Gör">@item.shortTitle</a></h3>
                             <p>
                                 <span class="user"><strong><a href="#" title="@item.user.UserName tarafından soruldu" rel="author">@item.user.UserName</a></strong> </span>
-                                <span class="views"><b>38 </b> Görüntüleme </span>
+                                <span class="views"><b>@item.viewCount </b> Görüntüleme </span>
                                 <span class="pcate">  <a href="#" title="Kategori">@item.subCategory.SubCategoryName</a> </span>
                             </p>
 
@@ -116,7 +241,50 @@
                     }
                 </div>
             </div>
+            @Html.Raw(ViewBag.Page);
+
         </div>
 
     </div>
+
+
+
+    <aside class="col-md-3 sidebar sticky-sidebar">
+        <div id="questions_categories-widget-2" class="widget questions_categories-widget">
+            <h3 class="widget_title">Makale Kategorileri</h3>
+            <ul>
+                @foreach (var item in ((List<CategoryModel>)ViewBag.categories))
+                {
+
+                    <li><i class="fa fa-tags" aria-hidden="true"></i> <a href="http://fluentthemes.com/wp/knowledge/question-category/css/"> @item.CategoryName <span> ( <span>@item.Count Makale</span> ) </span> </a></li>
+                }
+            </ul>
+
+        </div>
+
+        <div id="comments-post-widget-2" class="widget comments-post-widget">
+            <h3 class="widget_title">Comments</h3>
+            <div class="widget_highest_points widget_comments">
+                <ul>
+                    @foreach (var item1 in ((List<CommentModel>)ViewBag.comments))
+                    {
+
+
+                        <li>
+                            <div class="author-img">
+                                <a href="http://fluentthemes.com/wp/knowledge/author/umar/">
+                                    <img alt="Umar Amin" src="@item1.User.ProfilPicture" width="40" height="40">
+                                </a>
+                            </div>
+                            <h6>
+                                <a href="http://fluentthemes.com/wp/knowledge/questions/how-to-automatically-generates-html-table-by-javascript/#comment-11">@item1.CommentText</a>
+                            </h6>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+    </aside>
+
 </div>

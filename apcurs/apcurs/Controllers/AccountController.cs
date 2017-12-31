@@ -11,9 +11,9 @@ using System.Web.Security;
 namespace apcurs.Controllers
 {
 
-    public class AccountController : Controller
+    public class accountController : Controller
     {
-
+        
         DbDataContext db = new DbDataContext();
 
         public static string GetClientIp()
@@ -41,7 +41,7 @@ namespace apcurs.Controllers
 
 
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult login()
         {
 
             LoginViewModel log = new LoginViewModel();
@@ -53,7 +53,7 @@ namespace apcurs.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public ActionResult login(LoginViewModel model)
         {
 
             if (!ModelState.IsValid)
@@ -100,7 +100,7 @@ namespace apcurs.Controllers
 
 
         [AllowAnonymous]
-        public ActionResult UserRegister()
+        public ActionResult userRegister()
         {
             return View();
         }
@@ -109,7 +109,7 @@ namespace apcurs.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult UserRegister(RegisterViewModel model)
+        public ActionResult userRegister(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {

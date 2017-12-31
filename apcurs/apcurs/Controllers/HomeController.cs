@@ -11,8 +11,9 @@ using System.Web.Security;
 
 namespace apcurs.Controllers
 {
-    public class HomeController : Controller
+    public class homeController : Controller
     {
+        Paging pg = new Paging();
         DbDataContext db = new DbDataContext();
         public string GetErrorMessage(Exception ex)
         {
@@ -67,7 +68,7 @@ namespace apcurs.Controllers
 
             return result;
         }
-        public ActionResult Index()
+        public ActionResult index()
         {
             QuestionAndArticleModel model = new QuestionAndArticleModel();
             QuestionModel qmodel = new QuestionModel();
@@ -88,8 +89,9 @@ namespace apcurs.Controllers
                             viewCount = q.ViewCount,
                             voteCount = q.VoteCount,
                             shortTitle = q.ShortTitle,
+                            status=q.Status
 
-                        }).ToList();
+                        }).Where(a => a.status == true).ToList();
 
 
 
@@ -111,8 +113,9 @@ namespace apcurs.Controllers
                              viewCount = q.ViewCount,
                              likeCount = q.LikeCount,
                              shortTitle = q.ShortTitle,      
-                             articlePicture=q.ArticlePicture
-                         }).ToList();
+                             articlePicture=q.ArticlePicture,
+                             status=q.Status
+                         }).Where(a => a.status == true).ToList();
             foreach (var item2 in temp2)
             {
                 item2.comment = db.ArticleComments.Where(a => a.Articleid == item2.id).ToList();
@@ -139,6 +142,29 @@ namespace apcurs.Controllers
             model.mostLikedArticles = Likedarticle;
             model.mostViewedArticles = Viewedarticle;
 
+
+            var items = (from ar in db.ArticleComments.ToList()
+                         select new CommentModel
+                         {
+                             id = ar.id,
+                             User = ar.User,
+                             Article = ar.Article,
+                             CreatedDate = ar.CreatedDate,
+                             CommentText = ar.CommentText,
+                             Status = ar.Status
+
+                         }).Where(a => a.Status == true).OrderByDescending(a => a.CreatedDate).ToList();
+            var catItems = (from s in db.Categories.ToList()
+                            select new CategoryModel
+                            {
+                                id = s.id,
+                                Count = s.Articles.Count(),
+                                CategoryName = s.CategoryName,
+                                SubCategory = s.SubCategories.ToList(),
+                                Status = s.Status
+                            }).Where(a => a.Status == true).ToList();
+            ViewBag.categories = catItems;
+            ViewBag.comments = items;
             return View(model);
         }
     }

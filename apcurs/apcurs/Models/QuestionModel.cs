@@ -12,12 +12,12 @@ namespace apcurs.Models
         public SubCategory subCategory { get; set; }
         public string questionText { get; set; }
         public DateTime? createdDate { get; set; }
-        public bool isReply { get; set; }
+        public bool? isReply { get; set; }
         public Category category { get; set; }
         public int? viewCount { get; set; }
         public int? voteCount { get; set; }
         public string shortTitle { get; set; }
         public List<Answer> answers { get; set; }
-        public bool status { get; set; }
+        public bool? status { get; set; }
     }
 }
