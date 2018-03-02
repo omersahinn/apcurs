@@ -1,5 +1,5 @@
 ﻿
-  <html>
+<html>
 <head>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -7,25 +7,29 @@
 
     <script src="~/Scripts/jquery-2.1.4.min.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <style>
+        .content {
+            position: relative;
+            width: 100%;
+            flex: 1 0 auto;
+            margin: 0 auto;
+            text-align: left;
+        }
+    </style>
 </head>
-<body style="background-color:white">
-    <div class="container" style="height:100%">
-        @{Html.RenderPartial("TopMenu"); }
 
+<body style="background-color:white">
+    <div class="contain">
+
+        @{Html.RenderPartial("TopMenu"); }
 
         @RenderBody()
 
 
         @*@{Html.RenderPartial("Footer"); }*@
-        </div>
-
+    </div>
 </body>
-
-
-
-
 </html>
-       
-       
 
-  
+
+

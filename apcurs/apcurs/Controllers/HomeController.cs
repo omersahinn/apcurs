@@ -13,7 +13,7 @@ namespace apcurs.Controllers
 {
     public class homeController : Controller
     {
-        Paging pg = new Paging();
+        QuestionPaging pg = new QuestionPaging();
         DbDataContext db = new DbDataContext();
         public string GetErrorMessage(Exception ex)
         {
@@ -24,72 +24,28 @@ namespace apcurs.Controllers
 
             return errorMessage.ToString();
         }
-        public static string TimeAgo(DateTime dt)
-        {
-            string result = string.Empty;
-            var timeSpan = DateTime.Now.Subtract(dt);
 
-            //var timeSpan = DateTime.Now-dt;
-
-            if (timeSpan <= TimeSpan.FromSeconds(60))
-            {
-                result = string.Format("{0} saniye önce", timeSpan.Seconds);
-            }
-            else if (timeSpan <= TimeSpan.FromMinutes(60))
-            {
-                result = timeSpan.Minutes > 1 ?
-                    String.Format("yaklaşık {0} dakika önce", timeSpan.Minutes) :
-                    "yaklaşık 1 dakika önce";
-            }
-            else if (timeSpan <= TimeSpan.FromHours(24))
-            {
-                result = timeSpan.Hours > 1 ?
-                    String.Format("yaklaşık {0} saat önce", timeSpan.Hours) :
-                    "yaklaşık 1 saat önce";
-            }
-            else if (timeSpan <= TimeSpan.FromDays(30))
-            {
-                result = timeSpan.Days > 1 ?
-                    String.Format("yaklaşık {0} gün önce", timeSpan.Days) :
-                    "dün";
-            }
-            else if (timeSpan <= TimeSpan.FromDays(365))
-            {
-                result = timeSpan.Days > 30 ?
-                    String.Format("yaklaşık {0} ay önce", timeSpan.Days / 30) :
-                    "yaklaşık 1 ay önce";
-            }
-            else
-            {
-                result = timeSpan.Days > 365 ?
-                    String.Format("yaklaşık {0} yıl önce", timeSpan.Days / 365) :
-                    "yaklaşık 1 yıl önce";
-            }
-
-            return result;
-        }
         public ActionResult index()
         {
             QuestionAndArticleModel model = new QuestionAndArticleModel();
             QuestionModel qmodel = new QuestionModel();
             ArticleModel amodel = new ArticleModel();
-
+            Tag t = new Tag();
+            List<Tag> lt = new List<Tag>();
 
             var temp = (from q in db.GetTable<Question>()
                         select new QuestionModel()
                         {
-                            
+
                             id = q.id,
                             user = q.User,
-                            subCategory = q.SubCategory,
-                            category = q.Category,
                             questionText = q.QuestionText,
                             createdDate = q.CreatedDate,
                             isReply = q.IsReply,
                             viewCount = q.ViewCount,
                             voteCount = q.VoteCount,
                             shortTitle = q.ShortTitle,
-                            status=q.Status
+                            status = q.Status
 
                         }).Where(a => a.status == true).ToList();
 
@@ -97,8 +53,39 @@ namespace apcurs.Controllers
 
             foreach (var item in temp)
             {
-                item.answers = db.Answers.Where(a => a.Questionid == item.id).ToList();
+                var ansTemp = (from q in db.GetTable<Answer>()
+                               select new AnswerModel()
+                               {
+
+                                   id = q.id,
+                                   User = q.User,
+                                   AnswerText = q.AnswerText,
+                                   CreatedDate = q.CreatedDate,
+                                   IsSolved = q.IsSolved,
+                                   VoteCount = q.VoteCount,
+                                   Question = q.Question,
+                                   Status = q.Status,
+                                   VotedAnswers = q.VotedAnswers.ToList()
+
+                               }).Where(x => x.Status == true && x.Question.id == item.id).ToList();
+                lt.Clear();
+
+               item.answers = ansTemp;
+               
+                var a = db.QuestionTags.Where(z => z.QuestionId == item.id).Select(x => new { x.TagId }).ToList();
+                if (a != null)
+                {
+                    foreach (var item1 in a)
+                    {
+                        t = db.Tags.Where(q => q.id == item1.TagId).FirstOrDefault();
+                        lt.Add(t);
+                    }
+                    item.tags = lt.ToList();
+                }
+
             }
+            var asd = temp;
+
 
 
             var temp2 = (from q in db.Articles.ToList()
@@ -106,15 +93,13 @@ namespace apcurs.Controllers
                          {
                              id = q.id,
                              user = q.User,
-                             subCategory = q.SubCategory,
-                             category = q.Category,
                              articleText = q.ArticleText,
                              createdDate = q.CreatedDate,
                              viewCount = q.ViewCount,
                              likeCount = q.LikeCount,
-                             shortTitle = q.ShortTitle,      
-                             articlePicture=q.ArticlePicture,
-                             status=q.Status
+                             shortTitle = q.ShortTitle,
+                             articlePicture = q.ArticlePicture,
+                             status = q.Status
                          }).Where(a => a.status == true).ToList();
             foreach (var item2 in temp2)
             {
@@ -122,8 +107,8 @@ namespace apcurs.Controllers
             }
 
 
-            var Lastquestion = temp.OrderByDescending(a => a.createdDate).Take(20);        
-            var NotAnsweredQuestion =temp.Where(c=>c.answers.Count==0).OrderByDescending(a => a.createdDate).Take(20);
+            var Lastquestion = temp.OrderByDescending(a => a.createdDate).Take(20);
+            var NotAnsweredQuestion = temp.Where(c => c.answers.Count == 0).OrderByDescending(a => a.createdDate).Take(20);
             var Viewedanswer = temp.OrderByDescending(a => a.viewCount).Take(20);
             var answeredQuestion = temp.OrderByDescending(a => a.answers.Count()).Take(20);
 
@@ -154,18 +139,23 @@ namespace apcurs.Controllers
                              Status = ar.Status
 
                          }).Where(a => a.Status == true).OrderByDescending(a => a.CreatedDate).ToList();
-            var catItems = (from s in db.Categories.ToList()
-                            select new CategoryModel
-                            {
-                                id = s.id,
-                                Count = s.Articles.Count(),
-                                CategoryName = s.CategoryName,
-                                SubCategory = s.SubCategories.ToList(),
-                                Status = s.Status
-                            }).Where(a => a.Status == true).ToList();
-            ViewBag.categories = catItems;
+            //var catItems = (from s in db.Categories.ToList()
+            //                select new CategoryModel
+            //                {
+            //                    id = s.id,
+            //                    Count = s.Articles.Count(),
+            //                    CategoryName = s.CategoryName,
+            //                    SubCategory = s.SubCategories.ToList(),
+            //                    Status = s.Status
+            //                }).Where(a => a.Status == true).ToList();
+            //ViewBag.categories = catItems;
             ViewBag.comments = items;
             return View(model);
+        }
+        public ActionResult Chat()
+        {
+
+            return View();
         }
     }
 }

@@ -9,15 +9,18 @@ namespace apcurs.Models
     {
         public int id { get; set; }
         public User user { get; set; }
-        public SubCategory subCategory { get; set; }
         public string questionText { get; set; }
         public DateTime? createdDate { get; set; }
         public bool? isReply { get; set; }
-        public Category category { get; set; }
         public int? viewCount { get; set; }
         public int? voteCount { get; set; }
         public string shortTitle { get; set; }
-        public List<Answer> answers { get; set; }
+        public List<AnswerModel> answers { get; set; }
+        public List<Tag> tags { get; set; }
         public bool? status { get; set; }
+        public List<VotedQuestion> votedUsers { get; set; }
+        public List<MyFavourite> favouritedUsers { get; set; }
+        public int? favoriCount { get; set; }
+
     }
 }

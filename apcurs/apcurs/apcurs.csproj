@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,6 +59,15 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -87,6 +97,10 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -96,6 +110,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -129,14 +149,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\ace.min.css" />
+    <Content Include="Content\ArticleList.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\apcurs.css" />
     <Content Include="Content\leaflet.css" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\Markdown.Converter.js" />
+    <Content Include="Content\Markdown.Editor.js" />
+    <Content Include="Content\Markdown.Sanitizer.js" />
     <Content Include="Content\menu.css" />
+    <Content Include="Content\profilmain.css" />
     <Content Include="Content\QuestionList.css" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="Content\TopMenu.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -144,46 +170,53 @@
     <Content Include="Scripts\ace-elements.min.js" />
     <Content Include="Scripts\ace.min.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\bootstrap-multiselect.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Models\Db.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Db.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="Models\Db.dbml.layout">
-      <DependentUpon>Db.dbml</DependentUpon>
-    </None>
+    <Content Include="Content\wmd-buttons.png" />
     <Content Include="Scripts\angular.min.js.map" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery.bxslider.js" />
-    <Content Include="Scripts\jquery.fitvids.js" />
-    <Content Include="Scripts\jquery.sequence-min.js" />
-    <Content Include="Scripts\jquery.sequence.js" />
-    <Content Include="Scripts\main-menu.js" />
-    <Content Include="Scripts\modernizr-2.6.2-respond-1.1.0.min.js" />
-    <Content Include="Scripts\template.js" />
+    <Content Include="Scripts\jquery-typeahead.js" />
+    <Content Include="Scripts\jquery.bootstrap-duallistbox.min.js" />
+    <Content Include="Scripts\jquery.raty.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\select2.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\accountController.cs" />
     <Compile Include="Controllers\articlesController.cs" />
+    <Compile Include="Controllers\discussionsController.cs" />
     <Compile Include="Controllers\homeController.cs" />
     <Compile Include="Controllers\questionsController.cs" />
+    <Compile Include="Controllers\tagsController.cs" />
     <Compile Include="Controllers\usersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnswerModel.cs" />
     <Compile Include="Models\ArticleModel.cs" />
-    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\PostDiscussion.cs" />
+    <Compile Include="Models\SubDiscussionModel.cs" />
+    <Compile Include="Models\DiscussionsModel.cs" />
+    <Compile Include="Models\Paging.cs" />
     <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\ConvertImage.cs" />
     <Compile Include="Models\Db.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -192,13 +225,18 @@
     <Compile Include="Models\LastAnswerModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\LostPasswordModel.cs" />
-    <Compile Include="Models\Paging.cs" />
+    <Compile Include="Models\PostAnswerThings.cs" />
+    <Compile Include="Models\PostSmallThings.cs" />
+    <Compile Include="Models\QuestionPaging.cs" />
+    <Compile Include="Models\PostQuestion.cs" />
     <Compile Include="Models\QuestionAndArticleModel.cs" />
     <Compile Include="Models\QuestionModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ResetPasswordModel.cs" />
-    <Compile Include="Models\SubCategoryModel.cs" />
+    <Compile Include="Models\TagModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_Start\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -216,6 +254,25 @@
     <Content Include="Views\users\userIndex.cshtml" />
     <Content Include="Views\questions\questionIndex.cshtml" />
     <Content Include="Views\articles\articleIndex.cshtml" />
+    <Content Include="Views\articles\articlesByid.cshtml" />
+    <Content Include="Views\questions\postQuestion.cshtml" />
+    <Content Include="Models\Db.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Db.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Models\Db.dbml.layout">
+      <DependentUpon>Db.dbml</DependentUpon>
+    </None>
+    <Content Include="Views\tags\Index.cshtml" />
+    <Content Include="Views\tags\GetQuestionsbyTag.cshtml" />
+    <Content Include="Views\questions\getQuestionById.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\discussions\Index.cshtml" />
+    <Content Include="Views\discussions\createDiscussion.cshtml" />
+    <Content Include="Views\home\Chat.cshtml" />
+    <Content Include="Views\discussions\discussionById.cshtml" />
+    <Content Include="Views\discussions\SubDiscussionListPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -225,7 +282,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Helpers\" />
     <Folder Include="icons\" />
+    <Folder Include="Views\subDiscussions\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

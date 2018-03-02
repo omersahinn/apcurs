@@ -48,6 +48,13 @@ namespace apcurs.Controllers
 
             return View(log);
         }
+        //private HttpCookie CreateStudentCookie()
+        //{
+        //    HttpCookie StudentCookies = new HttpCookie("StudentCookies");
+        //    StudentCookies.Value = "hallo";
+        //    StudentCookies.Expires = DateTime.Now.AddHours(1);
+        //    return StudentCookies;
+        //}
 
 
         [HttpPost]
@@ -71,6 +78,8 @@ namespace apcurs.Controllers
                 {
                     Session["user"] = user;
                     Session["userName"] = user.UserName;
+                    Session["userid"] = user.id;
+                    
                     return RedirectToAction("Loggedin");
                 }
                 else
@@ -95,8 +104,13 @@ namespace apcurs.Controllers
                 return RedirectToAction("Login");
             }
         }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("index", "Home");
+        }
 
-      
 
 
         [AllowAnonymous]
